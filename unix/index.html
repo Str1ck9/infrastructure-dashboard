@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UNIX System Monitor - Infrastructure Services</title>
+  <link rel="stylesheet" href="../common/css/reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script defer src="../common/js/services.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <div class="terminal">
+    <!-- System Header -->
+    <div class="system-header">
+      <div class="header-line">
+        <span class="hostname">infra-monitor@homelab:~$</span>
+        <span class="status-indicators">
+          <span id="uptime">uptime: calculating...</span>
+          <span class="separator">|</span>
+          <span id="load">load avg: 0.00, 0.00, 0.00</span>
+          <span class="separator">|</span>
+          <span id="time">00:00:00</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- Command Banner -->
+    <div class="banner">
+      <pre>
+╔══════════════════════════════════════════════════════════════════════════╗
+║                    INFRASTRUCTURE SERVICE MONITOR                        ║
+║                         SunOS 5.7 Generic_106541                        ║
+╠══════════════════════════════════════════════════════════════════════════╣
+║  USER: root              TTY: pts/0              LOGIN: <span id="loginTime"></span>  ║
+╚══════════════════════════════════════════════════════════════════════════╝
+      </pre>
+    </div>
+
+    <!-- Command Prompt -->
+    <div class="prompt-line">
+      <span class="prompt">root@homelab#</span>
+      <span class="command">ps -ef | grep services</span>
+    </div>
+
+    <!-- Process Table Header -->
+    <div class="process-table">
+      <div class="table-header">
+        <span class="col-pid">PID</span>
+        <span class="col-user">USER</span>
+        <span class="col-status">STAT</span>
+        <span class="col-time">TIME</span>
+        <span class="col-command">COMMAND</span>
+        <span class="col-port">PORT</span>
+        <span class="col-action">ACTION</span>
+      </div>
+      
+      <!-- Services will be rendered here -->
+      <div id="processTable" class="process-list"></div>
+    </div>
+
+    <!-- System Statistics -->
+    <div class="system-stats">
+      <div class="stat-section">
+        <div class="stat-title">═══ SYSTEM STATUS ═══</div>
+        <div class="stat-line">Total Services: <span id="totalProcs">0</span></div>
+        <div class="stat-line">Running: <span id="runningProcs" class="status-running">0</span></div>
+        <div class="stat-line">Stopped: <span id="stoppedProcs" class="status-stopped">0</span></div>
+        <div class="stat-line">Checking: <span id="checkingProcs" class="status-checking">0</span></div>
+      </div>
+      
+      <div class="stat-section">
+        <div class="stat-title">═══ COMMANDS ═══</div>
+        <div class="stat-line"><span class="key">[R]</span> Refresh processes</div>
+        <div class="stat-line"><span class="key">[S]</span> Sort by status</div>
+        <div class="stat-line"><span class="key">[/]</span> Search filter</div>
+        <div class="stat-line"><span class="key">[Q]</span> Logout</div>
+      </div>
+    </div>
+
+    <!-- Command Footer -->
+    <div class="footer-prompt">
+      <span class="prompt">root@homelab#</span>
+      <span class="cursor">_</span>
+    </div>
+  </div>
+
+  <!-- Quick Look Modal -->
+  <div id="quickLookModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title">╔═══ SERVICE DETAIL VIEW ═══╗</span>
+        <span class="close-btn" onclick="closeModal()">[X]</span>
+      </div>
+      <iframe id="modal-iframe" src="" frameborder="0"></iframe>
+    </div>
+  </div>
+</body>
+</html>
