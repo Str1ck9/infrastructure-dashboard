@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>USS ENTERPRISE NCC-1701 • OPERATIONS</title>
+  <link rel="stylesheet" href="../common/css/reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script defer src="../common/js/services.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <div class="enterprise-frame">
+    <header class="tos-header">
+      <div class="console-left">
+        <div class="badge">NCC‑1701</div>
+        <div class="status-lights">
+          <div class="light" data-status="green"></div>
+          <div class="light" data-status="yellow"></div>
+          <div class="light" data-status="red"></div>
+        </div>
+      </div>
+      <div class="header-center">
+        <h1>STARSHIP ENTERPRISE</h1>
+        <div class="subtitle">OPERATIONS CONSOLE</div>
+      </div>
+      <div class="console-right">
+        <button class="theme-toggle" onclick="toggleRedAlert()" aria-label="Red Alert">RED ALERT</button>
+        <div class="refresh-indicator" id="refreshing">●</div>
+      </div>
+    </header>
+
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="COMPUTER: SEARCH SYSTEMS" onkeyup="searchServices()">
+    </div>
+
+    <main id="grid" class="panel-grid" aria-live="polite"></main>
+
+    <footer class="tos-footer">
+      <div class="footer-left">STARDATE <span id="stardate"></span></div>
+      <div class="footer-center">USS ENTERPRISE • ORIGINAL SERIES</div>
+      <div class="footer-right">SYSTEMS: <span id="systemCount">0</span></div>
+    </footer>
+  </div>
+
+  <!-- Quick Look Modal -->
+  <div id="quickLookModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <div class="modal-header">TACTICAL DISPLAY</div>
+      <iframe id="modal-iframe" src="" frameborder="0"></iframe>
+    </div>
+  </div>
+</body>
+</html>

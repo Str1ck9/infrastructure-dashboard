@@ -1,0 +1,12 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+:root {
+  --ok: #28a745;
+  --warn: #ffc107;
+  --down: #dc3545;
+}
+.status-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 8px; }
+.status-ok { background: var(--ok); }
+.status-warn { background: var(--warn); }
+.status-down { background: var(--down); }
+.link { text-decoration: none; }

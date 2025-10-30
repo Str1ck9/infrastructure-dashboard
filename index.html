@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboards: Theme Switcher</title>
+  <link rel="stylesheet" href="common/css/reset.css" />
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background:#0f1226; color:#f2f2f7; padding:40px; }
+    h1 { font-weight:700; margin-bottom:16px; }
+    p { opacity:.85; margin-bottom:24px; }
+    .grid { display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); }
+    .card { background:#1b1f3b; border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:18px; }
+    .card h2{ margin-bottom:8px; font-size:1.1rem; }
+    .btn { display:inline-block; margin-top:10px; padding:10px 14px; border-radius:10px; background:#2a3063; color:#fff; }
+  </style>
+</head>
+<body>
+  <h1>Choose a Dashboard Theme</h1>
+  <p>These are fully static, share the same <code>common/</code> data, and can be served via the included local server.</p>
+  <div class="grid">
+    <article class="card">
+      <h2>Star Trek — Original Series (TOS)</h2>
+      <p>Retro 1960s UI feel: bold colors, chunky toggles, panel lights.</p>
+      <a class="btn" href="tos/index.html">Open TOS</a>
+    </article>
+    <article class="card">
+      <h2>Old BBS (90s ANSI)</h2>
+      <p>Monospace CRT vibe: ASCII boxes, blinking cursor, keyboard nav.</p>
+      <a class="btn" href="bbs/index.html">Open BBS</a>
+    </article>
+    <article class="card">
+      <h2>AOL Classic</h2>
+      <p>Late‑90s desktop window chrome, teal gradients, skeuomorphic icons.</p>
+      <a class="btn" href="aol/index.html">Open AOL</a>
+    </article>
+  </div>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>America Online - Infrastructure Dashboard</title>
+  <link rel="stylesheet" href="../common/css/reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script defer src="../common/js/services.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <!-- Desktop Background -->
+  <div class="desktop-bg"></div>
+  
+  <!-- AOL Window -->
+  <div class="window" id="mainWindow">
+    <!-- Title Bar -->
+    <div class="titlebar">
+      <div class="controls">
+        <button class="btn minimize" title="Minimize" aria-label="Minimize"></button>
+        <button class="btn maximize" title="Maximize" aria-label="Maximize"></button>
+        <button class="btn close" title="Close" onclick="confirmClose()" aria-label="Close"></button>
+      </div>
+      <div class="title">
+        <img class="aol-logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30'%3E%3Ctext x='10' y='22' fill='%23fff' font-family='Arial Black' font-size='24' font-weight='900'%3EAOL%3C/text%3E%3C/svg%3E" alt="AOL">
+        America Online — Infrastructure Dashboard
+      </div>
+      <div class="window-menu">
+        <button class="menu-btn">File</button>
+        <button class="menu-btn">Edit</button>
+        <button class="menu-btn">Window</button>
+        <button class="menu-btn">Help</button>
+      </div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <div class="toolbar-section">
+        <button class="tool-btn" id="refresh" title="Refresh All">
+          <span class="icon">↻</span>
+          <span class="label">Refresh</span>
+        </button>
+        <button class="tool-btn" id="homeBtn" title="Home">
+          <span class="icon">🏠</span>
+          <span class="label">Home</span>
+        </button>
+        <button class="tool-btn" id="favoritesBtn" title="Favorites">
+          <span class="icon">★</span>
+          <span class="label">Favorites</span>
+        </button>
+        <button class="tool-btn" id="mailBtn" title="Mail">
+          <span class="icon">✉</span>
+          <span class="label">Mail</span>
+        </button>
+      </div>
+      <div class="toolbar-divider"></div>
+      <div class="search-container">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Search systems..." onkeyup="searchServices()">
+      </div>
+    </div>
+
+    <!-- Welcome Banner -->
+    <div class="welcome-banner">
+      <div class="banner-content">
+        <div class="welcome-text">
+          <span class="wave">👋</span>
+          <strong>Welcome, JAMES!</strong>
+        </div>
+        <div class="banner-info">
+          <span class="info-item">🌐 Connected at <strong>56k</strong></span>
+          <span class="info-item">📊 Systems: <strong id="systemCount">0</strong></span>
+          <span class="info-item">✓ Online: <strong id="onlineCount" class="text-green">0</strong></span>
+          <span class="info-item">✗ Offline: <strong id="offlineCount" class="text-red">0</strong></span>
+        </div>
+      </div>
+      <div class="you-got-mail" id="mailAlert" style="display: none;">
+        <span class="mail-icon">📬</span>
+        <span class="mail-text">You've Got Mail!</span>
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="content-area">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-section">
+          <div class="sidebar-title">⚡ Quick Links</div>
+          <div class="sidebar-links">
+            <a href="#" class="sidebar-link" onclick="filterByCategory('Primary Systems'); return false;">🔧 Primary Systems</a>
+            <a href="#" class="sidebar-link" onclick="filterByCategory('Data Storage'); return false;">💾 Data Storage</a>
+            <a href="#" class="sidebar-link" onclick="filterByCategory('Media Retrieval'); return false;">📥 Media Retrieval</a>
+            <a href="#" class="sidebar-link" onclick="filterByCategory('Network Control'); return false;">🌐 Network Control</a>
+            <a href="#" class="sidebar-link" onclick="filterByCategory('Sensor Array'); return false;">📹 Sensor Array</a>
+            <a href="#" class="sidebar-link active" onclick="showAllCategories(); return false;">📋 Show All</a>
+          </div>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-title">ℹ️ Information</div>
+          <div class="sidebar-info">
+            <p><strong>Last Updated:</strong></p>
+            <p id="lastUpdate" class="text-small">--:--:--</p>
+            <p><strong>Connection:</strong></p>
+            <p class="text-small">V.90 56k Modem</p>
+            <p><strong>Session Time:</strong></p>
+            <p id="sessionTime" class="text-small">00:00:00</p>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Grid -->
+      <main class="main-content">
+        <div id="grid" class="grid"></div>
+      </main>
+    </div>
+
+    <!-- Status Bar -->
+    <div class="statusbar">
+      <div class="status-left">
+        <span class="status-icon">🌐</span>
+        <span id="connectionStatus">Connected to America Online</span>
+      </div>
+      <div class="status-center">
+        © 1999 America Online, Inc. • All Rights Reserved
+      </div>
+      <div class="status-right">
+        <span id="clock"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Look Modal -->
+  <div id="quickLookModal" class="modal">
+    <div class="modal-window">
+      <div class="modal-titlebar">
+        <div class="controls">
+          <button class="btn minimize" disabled></button>
+          <button class="btn maximize" disabled></button>
+          <button class="btn close" onclick="closeModal()"></button>
+        </div>
+        <div class="title">Quick Look — Service Preview</div>
+      </div>
+      <div class="modal-content">
+        <iframe id="modal-iframe" src="" frameborder="0"></iframe>
+      </div>
+      <div class="modal-statusbar">
+        <span id="modalUrl">about:blank</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+    <div class="loading-box">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Connecting to America Online...</div>
+      <div class="loading-progress">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
