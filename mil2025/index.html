@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Command Bunker // MIL‑OPS 2025</title>
+  <link rel="stylesheet" href="../common/css/reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script defer src="../common/js/services.js"></script>
+  <script defer src="js/radar.js"></script>
+  <script defer src="js/telemetry.js"></script>
+  <script defer src="js/shortcuts.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+<header class="top">
+  <div class="unit">STRATCOM • OPS</div>
+  <h1>MIL‑OPS 2025</h1>
+  <div class="defcon" aria-label="DEFCON Indicators">
+    <span class="lamp" data-level="5"></span>
+    <span class="lamp" data-level="4"></span>
+    <span class="lamp" data-level="3"></span>
+    <span class="lamp" data-level="2"></span>
+    <span class="lamp" data-level="1"></span>
+  </div>
+</header>
+
+<main class="grid">
+  <section class="panel radar" aria-label="Global Radar">
+    <canvas id="radar" width="900" height="600" aria-hidden="true"></canvas>
+    <div class="legend">
+      <div><span class="dot ok"></span> ONLINE</div>
+      <div><span class="dot warn"></span> WARN</div>
+      <div><span class="dot down"></span> OFFLINE</div>
+    </div>
+  </section>
+
+  <section class="panel gauges" aria-label="System Telemetry">
+    <h2>TELEMETRY</h2>
+    <div class="gwrap">
+      <div class="gauge" data-key="cpu"><div class="bar"><span></span></div><label>CPU</label></div>
+      <div class="gauge" data-key="mem"><div class="bar"><span></span></div><label>MEM</label></div>
+      <div class="gauge" data-key="net"><div class="bar"><span></span></div><label>NET</label></div>
+    </div>
+    <div class="clock">
+      <span id="utc"></span>
+      <span id="local"></span>
+    </div>
+  </section>
+
+  <section class="panel services" aria-label="Services">
+    <div class="toolbar">
+      <input id="q" placeholder="Filter services… (/)" aria-label="Filter services"/>
+      <button id="refresh" class="btn">Refresh</button>
+      <button id="alert" class="btn">Red Alert (R)</button>
+    </div>
+    <div id="tiles" class="tiles" role="list"></div>
+  </section>
+
+  <section class="panel logs" aria-label="Event Log">
+    <h2>EVENT LOG</h2>
+    <div id="log" class="log"></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="hb" aria-label="Heartbeat" title="Systems Heartbeat"></div>
+  <div class="build">BUILD: 2025.Q4</div>
+</footer>
+
+<div id="tape" class="tape" aria-live="polite">
+  <div class="inner" id="tapeInner">INITIALIZING SYSTEMS…</div>
+</div>
+
+<div id="help" class="help hidden" role="dialog" aria-modal="true" aria-label="Keyboard Help">
+  <div class="helpbox">
+    <h3>Keyboard</h3>
+    <ul>
+      <li><kbd>F</kbd> Fullscreen</li>
+      <li><kbd>R</kbd> Red Alert</li>
+      <li><kbd>/</kbd> Focus Search</li>
+      <li><kbd>?</kbd> Toggle Help</li>
+      <li><kbd>Esc</kbd> Close Overlay</li>
+    </ul>
+    <button id="closeHelp" class="btn">Close</button>
+  </div>
+</div>
+</body>
+</html>
