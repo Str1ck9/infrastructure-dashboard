@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Center Rack View - Infrastructure Dashboard</title>
+    <link rel="stylesheet" href="../common/css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script defer src="../common/js/services.js"></script>
+    <script defer src="js/app.js"></script>
+</head>
+<body>
+    <div class="datacenter-container">
+        <!-- Control Panel Header -->
+        <header class="control-panel">
+            <div class="panel-left">
+                <div class="facility-info">
+                    <h1>DATA CENTER - RACK VIEW</h1>
+                    <div class="facility-id">FACILITY: DC-01 | CAGE: A-12</div>
+                </div>
+            </div>
+            
+            <div class="panel-center">
+                <div class="environmental-monitors">
+                    <div class="monitor-item">
+                        <div class="monitor-icon">🌡️</div>
+                        <div class="monitor-data">
+                            <span class="monitor-label">TEMPERATURE</span>
+                            <span class="monitor-value" id="temperature">68°F</span>
+                        </div>
+                    </div>
+                    <div class="monitor-item">
+                        <div class="monitor-icon">💧</div>
+                        <div class="monitor-data">
+                            <span class="monitor-label">HUMIDITY</span>
+                            <span class="monitor-value" id="humidity">45%</span>
+                        </div>
+                    </div>
+                    <div class="monitor-item">
+                        <div class="monitor-icon">⚡</div>
+                        <div class="monitor-data">
+                            <span class="monitor-label">POWER LOAD</span>
+                            <span class="monitor-value" id="powerLoad">12.4 kW</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="panel-right">
+                <button class="sound-toggle" id="soundToggle" title="Toggle sound effects">
+                    <span class="sound-icon">🔊</span>
+                    <span class="sound-label">SOUND</span>
+                </button>
+                <div class="rack-counter">
+                    <span class="counter-label">RACK</span>
+                    <span class="counter-value" id="currentRack">1</span>
+                    <span class="counter-total">/ <span id="totalRacks">1</span></span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Rack View -->
+        <main class="rack-viewport" id="rackViewport">
+            <div class="rack-container" id="rackContainer">
+                <!-- Racks will be dynamically generated -->
+            </div>
+            
+            <!-- Navigation Arrows -->
+            <button class="nav-arrow nav-left" id="navLeft" title="Previous Rack (←)">
+                <span>◀</span>
+            </button>
+            <button class="nav-arrow nav-right" id="navRight" title="Next Rack (→)">
+                <span>▶</span>
+            </button>
+        </main>
+
+        <!-- Bottom Status Bar -->
+        <footer class="status-bar">
+            <div class="status-section">
+                <span class="status-label">PDU VOLTAGE:</span>
+                <div class="voltage-graph" id="voltageGraph">
+                    <canvas id="voltageCanvas" width="200" height="30"></canvas>
+                </div>
+                <span class="status-value" id="voltage">208V</span>
+            </div>
+            
+            <div class="status-section">
+                <span class="status-label">COOLING:</span>
+                <div class="cooling-status">
+                    <div class="fan-indicator active"></div>
+                    <span class="status-value">OPTIMAL</span>
+                </div>
+            </div>
+            
+            <div class="status-section">
+                <span class="status-label">RACK HEALTH:</span>
+                <div class="health-bars">
+                    <div class="health-bar">
+                        <div class="health-fill" id="healthFill" style="width: 95%"></div>
+                    </div>
+                    <span class="status-value" id="healthPercent">95%</span>
+                </div>
+            </div>
+            
+            <div class="status-section">
+                <span class="status-label">CONTROLS:</span>
+                <div class="keyboard-hints">
+                    <kbd>←</kbd><kbd>→</kbd> Navigate
+                    <kbd>SPACE</kbd> Details
+                    <kbd>S</kbd> Sound
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Service Detail Modal -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">SERVER DETAILS</h2>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="detail-grid">
+                    <div class="detail-section">
+                        <h3>SYSTEM INFORMATION</h3>
+                        <div class="detail-row">
+                            <span class="detail-label">Hostname:</span>
+                            <span class="detail-value" id="detailName">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">IP Address:</span>
+                            <span class="detail-value" id="detailUrl">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Status:</span>
+                            <span class="detail-value" id="detailStatus">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Rack Position:</span>
+                            <span class="detail-value" id="detailPosition">-</span>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3>PERFORMANCE METRICS</h3>
+                        <div class="detail-row">
+                            <span class="detail-label">Power Draw:</span>
+                            <span class="detail-value" id="detailPower">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Temperature:</span>
+                            <span class="detail-value" id="detailTemp">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Uptime:</span>
+                            <span class="detail-value" id="detailUptime">-</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="detail-actions">
+                    <button class="detail-btn" onclick="openService()">
+                        <span>🔗</span> OPEN SERVICE
+                    </button>
+                    <button class="detail-btn" onclick="previewService()">
+                        <span>👁️</span> PREVIEW
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preview Modal -->
+    <div id="previewModal" class="modal">
+        <div class="modal-content preview-modal">
+            <div class="modal-header">
+                <h2 id="previewTitle">SERVICE PREVIEW</h2>
+                <button class="modal-close" onclick="closePreview()">×</button>
+            </div>
+            <div class="modal-body">
+                <iframe id="previewIframe" src=""></iframe>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

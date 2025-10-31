@@ -4,7 +4,7 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 
 ## Features
 
-- **13 Unique Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, Windows 3.1, Gopher Protocol, UNIX Mainframe, Arcade (Pac-Man), Military Command 2025, Spaceport, Submarine Command, Aviation Cockpit, LCARS Interface, and Commodore 64
+- **14 Unique Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, Windows 3.1, Gopher Protocol, UNIX Mainframe, Arcade (Pac-Man), Military Command 2025, Spaceport, Submarine Command, Aviation Cockpit, LCARS Interface, Commodore 64, and Data Center Rack View
 - **Real-time Status Monitoring**: Async ping checks with visual indicators
 - **Quick Look Modals**: Preview services without leaving the dashboard
 - **Keyboard Navigation**: Full keyboard control across all themes
@@ -145,6 +145,22 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 - R to refresh, ESC to close modal
 - Uppercase text (authentic C64 limitation)
 
+### 🏢 Data Center Rack View Theme (`/datacenter`)
+- Physical data center walkthrough experience
+- Photorealistic server rack rendering with gradients and shadows
+- Dynamically generated server units (1U-2U) for each service
+- Blinking LED indicators (power, activity, network, error states)
+- Animated cooling fans on active servers
+- Navigate between racks using arrow keys or navigation buttons
+- Real-time PDU voltage graph (208V ±2V fluctuation)
+- Environmental monitoring (temperature, humidity, power load)
+- Service detail modals with server metrics (power, temperature, uptime)
+- Preview modal with embedded iframe
+- Web Audio API sound effects (fan hum, relay clicks)
+- Rack health percentage indicator
+- Footer status bar with system metrics
+- Keyboard shortcuts: ← → (navigate racks), Space (details), S (sound toggle), ESC (close)
+
 ## Installation
 
 1. Clone this repository:
@@ -227,6 +243,9 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 **Commodore 64:**
 - Press number keys 1-9, 0 to open services | Click service name to open in new window | R: Refresh page | ESC: Close modal | Slow text rendering simulates C64 processor
 
+**Data Center Rack View:**
+- Arrow Keys: Navigate between racks | Space: Show details of first server in rack | S: Toggle sound effects | Click server to view details | ESC: Close modals | Navigation buttons available
+
 ## Project Structure
 
 ```
@@ -280,11 +299,16 @@ dashboard/
 │   │   └── app.js         # Bridge console, power bars, Red Alert
 │   └── css/
 │       └── style.css      # LCARS colors and gradients
-└── c64/                   # Commodore 64 theme
+├── c64/                   # Commodore 64 theme
+│   ├── js/
+│   │   └── app.js         # Slow text rendering, BASIC simulation
+│   └── css/
+│       └── style.css      # C64 16-color palette, CRT effects
+└── datacenter/            # Data Center Rack View theme
     ├── js/
-    │   └── app.js         # Slow text rendering, BASIC simulation
+    │   └── app.js         # Rack generation, LEDs, voltage graph, sound
     └── css/
-        └── style.css      # C64 16-color palette, CRT effects
+        └── style.css      # Photorealistic rack styling, LED animations
 ```
 
 ## Customization
