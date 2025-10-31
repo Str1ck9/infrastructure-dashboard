@@ -279,7 +279,15 @@ function renderServices() {
             <div class="service-url">${service.url.replace(/^https?:\/\//, '')}</div>
         `;
         
-        card.addEventListener('click', () => openModal(index));
+        // Left click opens in new tab
+        card.addEventListener('click', () => window.open(service.url, '_blank'));
+        
+        // Right click opens preview modal
+        card.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            openModal(index);
+        });
+        
         container.appendChild(card);
     });
     
