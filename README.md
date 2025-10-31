@@ -4,7 +4,7 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 
 ## Features
 
-- **14 Unique Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, Windows 3.1, Gopher Protocol, UNIX Mainframe, Arcade (Pac-Man), Military Command 2025, Spaceport, Submarine Command, Aviation Cockpit, LCARS Interface, Commodore 64, and Data Center Rack View
+- **16 Unique Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, Windows 3.1, Gopher Protocol, UNIX Mainframe, Arcade (Pac-Man), Military Command 2025, Spaceport, Submarine Command, Aviation Cockpit, LCARS Interface, Commodore 64, AI Command Core, Data Center Rack View, and DOS Shell
 - **Real-time Status Monitoring**: Async ping checks with visual indicators
 - **Quick Look Modals**: Preview services without leaving the dashboard
 - **Keyboard Navigation**: Full keyboard control across all themes
@@ -161,6 +161,19 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 - Footer status bar with system metrics
 - Keyboard shortcuts: ← → (navigate racks), Space (details), S (sound toggle), ESC (close)
 
+### 💻 DOS Shell Theme (`/dos`)
+- Authentic 1980s IBM PC terminal interface
+- Boot sequence with memory check and AUTOEXEC.BAT loading
+- MS-DOS command interpreter with DIR, RUN, PING, HELP commands
+- 80x25 character grid with CRT scanlines
+- Block cursor with blinking animation
+- Command history with up/down arrow navigation
+- VT323 monospace font for authentic DOS feel
+- Color-coded output (green=success, red=error, yellow=warning, cyan=headers)
+- Service listing with numbered index for quick access
+- Real-time service status checking
+- Commands: DIR (list), RUN <num> (open), PING (check status), CLS (clear), VER (version), HELP, EXIT
+
 ## Installation
 
 1. Clone this repository:
@@ -246,6 +259,9 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 **Data Center Rack View:**
 - Arrow Keys: Navigate between racks | Space: Show details of first server in rack | S: Toggle sound effects | Click server to view details | ESC: Close modals | Navigation buttons available
 
+**DOS Shell:**
+- Type commands and press ENTER | DIR: List services | RUN <number>: Open service | PING: Check all service status | CLS: Clear screen | HELP: Show commands | EXIT: Return to menu | Up/Down arrows: Command history
+
 ## Project Structure
 
 ```
@@ -304,11 +320,16 @@ dashboard/
 │   │   └── app.js         # Slow text rendering, BASIC simulation
 │   └── css/
 │       └── style.css      # C64 16-color palette, CRT effects
-└── datacenter/            # Data Center Rack View theme
+├── datacenter/            # Data Center Rack View theme
+│   ├── js/
+│   │   └── app.js         # Rack generation, LEDs, voltage graph, sound
+│   └── css/
+│       └── style.css      # Photorealistic rack styling, LED animations
+└── dos/                   # DOS Shell theme
     ├── js/
-    │   └── app.js         # Rack generation, LEDs, voltage graph, sound
+    │   └── app.js         # Boot sequence, command interpreter, service access
     └── css/
-        └── style.css      # Photorealistic rack styling, LED animations
+        └── style.css      # IBM PC VGA styling, CRT effects
 ```
 
 ## Customization

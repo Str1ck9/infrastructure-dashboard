@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+:root {
+    --dos-bg: #000000;
+    --dos-text: #AAAAAA;
+    --dos-highlight: #FFFF55;
+    --dos-error: #FF5555;
+    --dos-success: #55FF55;
+    --dos-cyan: #55FFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'VT323', monospace;
+    background: var(--dos-bg);
+    color: var(--dos-text);
+    overflow: hidden;
+    height: 100vh;
+}
+
+.dos-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--dos-bg);
+}
+
+.dos-screen {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    font-size: 20px;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    /* CRT effect */
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.15),
+            rgba(0, 0, 0, 0.15) 1px,
+            transparent 1px,
+            transparent 2px
+        ),
+        var(--dos-bg);
+    text-shadow: 0 0 2px currentColor;
+}
+
+.dos-screen::-webkit-scrollbar {
+    width: 12px;
+}
+
+.dos-screen::-webkit-scrollbar-track {
+    background: #111;
+}
+
+.dos-screen::-webkit-scrollbar-thumb {
+    background: #555;
+    border: 1px solid #333;
+}
+
+#dosOutput {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.command-line {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.prompt {
+    color: var(--dos-highlight);
+    margin-right: 5px;
+}
+
+#commandInput {
+    color: var(--dos-text);
+}
+
+.cursor {
+    color: var(--dos-text);
+    animation: blink 1s step-end infinite;
+    margin-left: 2px;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+.help-bar {
+    background: var(--dos-text);
+    color: var(--dos-bg);
+    padding: 8px 20px;
+    display: flex;
+    justify-content: space-around;
+    font-size: 16px;
+    border-top: 2px solid var(--dos-highlight);
+}
+
+.help-bar span {
+    white-space: nowrap;
+}
+
+/* DOS Color classes */
+.dos-header {
+    color: var(--dos-cyan);
+    font-weight: bold;
+}
+
+.dos-success {
+    color: var(--dos-success);
+}
+
+.dos-error {
+    color: var(--dos-error);
+}
+
+.dos-warning {
+    color: var(--dos-highlight);
+}
+
+.dos-bright {
+    color: #FFFFFF;
+}
+
+.dos-dim {
+    color: #555555;
+}
+
+/* Service list styling */
+.service-entry {
+    margin-left: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.service-number {
+    color: var(--dos-highlight);
+    min-width: 30px;
+}
+
+.service-name {
+    min-width: 200px;
+    color: var(--dos-cyan);
+}
+
+.service-url {
+    color: var(--dos-text);
+}
+
+.service-status {
+    margin-left: auto;
+}
+
+/* Boot sequence */
+.boot-line {
+    margin: 2px 0;
+}
+
+.boot-ok {
+    color: var(--dos-success);
+}
+
+.boot-dots {
+    color: var(--dos-text);
+}
