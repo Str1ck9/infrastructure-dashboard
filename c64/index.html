@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMMODORE 64 - Infrastructure Dashboard</title>
+    <link rel="stylesheet" href="../common/css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script defer src="../common/js/services.js"></script>
+    <script defer src="js/app.js"></script>
+</head>
+<body>
+    <div class="c64-screen">
+        <div class="c64-border">
+            <div class="c64-content" id="screen">
+                <!-- Content will be rendered here by JavaScript -->
+            </div>
+            <div class="cursor" id="cursor">█</div>
+        </div>
+    </div>
+
+    <!-- Quick Look Modal -->
+    <div id="quickLookModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">*** SERVICE PREVIEW ***</span>
+                <button class="modal-close" onclick="closeModal()">X</button>
+            </div>
+            <div class="modal-body">
+                <iframe id="modal-iframe" src="" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
