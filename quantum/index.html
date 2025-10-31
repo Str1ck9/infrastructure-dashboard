@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quantum Control Room - Infrastructure Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;600;700&family=Iceland&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="quantum-lab">
+    <!-- Quantum Particle Field Background -->
+    <canvas id="particleField"></canvas>
+    
+    <!-- Main Interface -->
+    <div class="lab-interface">
+      <!-- Header Console -->
+      <header class="lab-header">
+        <div class="facility-id">
+          <div class="facility-logo">⚛</div>
+          <div class="facility-info">
+            <h1>QUANTUM CONTROL ROOM</h1>
+            <p class="subtitle">CRYOGENIC COMPUTING FACILITY • SECTOR 7</p>
+          </div>
+        </div>
+        <div class="quantum-status">
+          <div class="entanglement-meter">
+            <span class="meter-label">ENTANGLEMENT</span>
+            <div class="meter-display">
+              <div class="meter-wave" id="entanglementWave"></div>
+            </div>
+            <span class="meter-value" id="entanglementValue">94.7%</span>
+          </div>
+        </div>
+        <div class="temp-monitor">
+          <span class="temp-label">CRYO TEMP</span>
+          <div class="temp-value" id="tempValue">0.015K</div>
+          <div class="temp-status">STABLE</div>
+        </div>
+        <div class="sound-controls">
+          <button class="sound-toggle" id="soundToggle" onclick="toggleSound()">
+            <span class="sound-icon">🔊</span>
+            <span class="sound-label">AUDIO</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Lab View -->
+      <div class="lab-container">
+        <!-- Left Panel: System Status -->
+        <aside class="system-panel">
+          <div class="panel-header">
+            <span class="panel-icon">⚡</span>
+            <span>QUANTUM STATE</span>
+          </div>
+          <div class="panel-content">
+            <div class="state-metric">
+              <span class="metric-label">COHERENCE</span>
+              <div class="metric-bar">
+                <div class="metric-fill" style="width: 87%"></div>
+              </div>
+              <span class="metric-value">87.3%</span>
+            </div>
+            <div class="state-metric">
+              <span class="metric-label">SUPERPOSITION</span>
+              <div class="metric-bar">
+                <div class="metric-fill" style="width: 92%"></div>
+              </div>
+              <span class="metric-value">92.1%</span>
+            </div>
+            <div class="state-metric">
+              <span class="metric-label">DECOHERENCE</span>
+              <div class="metric-bar decoherence">
+                <div class="metric-fill" style="width: 12%"></div>
+              </div>
+              <span class="metric-value">12.4%</span>
+            </div>
+            <div class="state-metric">
+              <span class="metric-label">FIDELITY</span>
+              <div class="metric-bar">
+                <div class="metric-fill" style="width: 96%"></div>
+              </div>
+              <span class="metric-value">96.8%</span>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <div class="uptime-display">
+              <span class="uptime-label">SYSTEM UPTIME</span>
+              <div class="uptime-value" id="uptimeValue">00:00:00</div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Center: Cryogenic Pods -->
+        <main class="cryo-chamber">
+          <div class="chamber-title">
+            <span>CRYOGENIC SERVICE PODS</span>
+            <div class="chamber-scan-line"></div>
+          </div>
+          <div class="pod-grid" id="podGrid">
+            <!-- Pods will be dynamically generated -->
+          </div>
+        </main>
+
+        <!-- Right Panel: Event Log -->
+        <aside class="event-panel">
+          <div class="panel-header">
+            <span class="panel-icon">📊</span>
+            <span>QUANTUM EVENTS</span>
+          </div>
+          <div class="panel-content event-log" id="eventLog">
+            <!-- Events will be added here -->
+          </div>
+        </aside>
+      </div>
+
+      <!-- Wave Function Collapse Modal -->
+      <div id="collapseModal" class="collapse-modal hidden">
+        <div class="collapse-animation">
+          <canvas id="collapseCanvas"></canvas>
+        </div>
+        <div class="modal-container">
+          <div class="modal-header">
+            <span id="modalTitle">QUANTUM SERVICE POD</span>
+            <button class="close-btn" onclick="closeModal()">✕</button>
+          </div>
+          <div class="modal-body">
+            <div class="pod-visualization">
+              <div class="probability-cloud" id="probabilityCloud"></div>
+            </div>
+            <div class="pod-data">
+              <div class="data-row">
+                <span class="data-label">POD ID:</span>
+                <span class="data-value" id="modalPodId">—</span>
+              </div>
+              <div class="data-row">
+                <span class="data-label">QUANTUM STATE:</span>
+                <span class="data-value" id="modalState">—</span>
+              </div>
+              <div class="data-row">
+                <span class="data-label">TEMPERATURE:</span>
+                <span class="data-value" id="modalTemp">—</span>
+              </div>
+              <div class="data-row">
+                <span class="data-label">COHERENCE:</span>
+                <span class="data-value" id="modalCoherence">—</span>
+              </div>
+              <div class="data-row">
+                <span class="data-label">ENTANGLEMENT:</span>
+                <span class="data-value" id="modalEntangle">—</span>
+              </div>
+              <div class="data-row">
+                <span class="data-label">LAST MEASUREMENT:</span>
+                <span class="data-value" id="modalMeasure">—</span>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-observe" onclick="observeService()">OBSERVE</button>
+            <button class="btn btn-collapse" onclick="collapseWaveFunction()">COLLAPSE</button>
+            <button class="btn btn-freeze" onclick="freezePod()">FREEZE POD</button>
+            <button class="btn btn-close" onclick="closeModal()">CLOSE</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Keyboard Shortcuts -->
+      <div class="shortcuts-overlay">
+        <kbd>O</kbd> Observe pod | <kbd>C</kbd> Collapse wave | <kbd>F</kbd> Freeze | <kbd>M</kbd> Mute/unmute | <kbd>ESC</kbd> Close
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
