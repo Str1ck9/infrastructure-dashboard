@@ -4,7 +4,7 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 
 ## Features
 
-- **20 Unique Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, Windows 3.1, Gopher Protocol, UNIX Mainframe, Arcade (Pac-Man), Military Command 2025, Spaceport, Submarine Command, Aviation Cockpit, LCARS Interface, Commodore 64, AI Command Core, Data Center Rack View, DOS Shell, Mac System 7, NASA Mission Control, Cyber Defense Center, and Neural Network Core
+- **21 Unique Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, Windows 3.1, Gopher Protocol, UNIX Mainframe, Arcade (Pac-Man), Military Command 2025, Spaceport, Submarine Command, Aviation Cockpit, LCARS Interface, Commodore 64, AI Command Core, Data Center Rack View, DOS Shell, Mac System 7, NASA Mission Control, Cyber Defense Center, Neural Network Core, and Quantum Control Room
 - **Real-time Status Monitoring**: Async ping checks with visual indicators
 - **Quick Look Modals**: Preview services without leaving the dashboard
 - **Keyboard Navigation**: Full keyboard control across all themes
@@ -228,6 +228,31 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 - Canvas animation running at 60 FPS with dynamic connection rendering
 - Radial gradient glow effects on nodes and connections
 
+### ⚛️ Quantum Control Room Theme (`/quantum`)
+- Hollywood sci-fi cryogenic computing facility (Interstellar/Tenet/Arrival inspired)
+- Quantum particle field background with Canvas animation and dynamic connections
+- Cryogenic service pods with glassmorphism and frost effects
+- Web Audio API sound system with 5 unique synthesized sounds:
+  - Quantum hum (continuous background atmosphere)
+  - Entanglement pulse (connection events)
+  - Wave function collapse (dramatic quantum state change)
+  - Decoherence alert (warning tone)
+  - Cryogenic coolant flow (white noise effect)
+- Wave function collapse animation with 200-particle explosion effect
+- Probability cloud visualization in service modals
+- Quantum states: SUPERPOSITION, ENTANGLED, COLLAPSED
+- System metrics: coherence, superposition, decoherence, fidelity
+- Ultra-low temperature monitoring (0.005K to 0.020K)
+- Entanglement meter with animated wave visualization
+- Floating pod scan animations and glow effects
+- Glassmorphism UI with backdrop-filter blur effects
+- Real-time event log with quantum physics terminology
+- Iceland & Jura fonts for futuristic aesthetic
+- Cyan/turquoise color scheme (#00fff2 / #4dd8ff)
+- Keyboard shortcuts: O (observe pod), C (collapse wave), F (freeze pod), M (mute/unmute), ESC (close modal)
+- Sound toggle button with mute icon indicator
+- Pod temperature updates on observation
+
 ### 🛡️ Cyber Defense Center Theme (`/cyberdefense`)
 - USCYBERCOM / SOC (Security Operations Center) war room interface
 - Animated world map with simplified continent outlines (Canvas-based)
@@ -349,6 +374,9 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 **Neural Network Core:**
 - Click cognitive nodes to view details | Watch animated neural synapses and connections | P key: Toggle pulse animation | S key: Stimulate all nodes | STIMULATE button boosts consciousness | ISOLATE: Disable node | Thought stream auto-updates | ESC: Close modal | Consciousness meter fluctuates with neural activity
 
+**Quantum Control Room:**
+- Click cryogenic pods to view details | Watch quantum particle field animation | O key: Observe pod (updates temp) | C key: Collapse wave function (particle explosion) | F key: Freeze pod | M key: Mute/unmute audio | Sound effects play automatically | OBSERVE: Measure quantum state | COLLAPSE: Trigger wave function collapse with visual/audio | FREEZE: Ultra-cool pod to 0.005K | ESC: Close modal
+
 ## Project Structure
 
 ```
@@ -432,11 +460,16 @@ dashboard/
 │   │   └── app.js         # World map canvas, attack arcs, IDS log
 │   └── css/
 │       └── style.css      # Cyber color scheme, SOC war room styling
-└── neural/                # Neural Network Core theme
+├── neural/                # Neural Network Core theme
+│   ├── js/
+│   │   └── app.js         # Neural synapse canvas, consciousness meter, thought stream
+│   └── css/
+│       └── style.css      # Synthwave magenta/cyan, Blade Runner aesthetics
+└── quantum/               # Quantum Control Room theme
     ├── js/
-    │   └── app.js         # Neural synapse canvas, consciousness meter, thought stream
+    │   └── app.js         # Web Audio sounds, particle field, wave collapse animation
     └── css/
-        └── style.css      # Synthwave magenta/cyan, Blade Runner aesthetics
+        └── style.css      # Glassmorphism, cryogenic pods, cyan/turquoise theme
 ```
 
 ## Customization
