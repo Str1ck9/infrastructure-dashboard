@@ -4,7 +4,7 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 
 ## Features
 
-- **11 Unique Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, Windows 3.1, Gopher Protocol, UNIX Mainframe, Arcade (Pac-Man), Military Command 2025, Spaceport, Submarine Command, and Aviation Cockpit
+- **13 Unique Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, Windows 3.1, Gopher Protocol, UNIX Mainframe, Arcade (Pac-Man), Military Command 2025, Spaceport, Submarine Command, Aviation Cockpit, LCARS Interface, and Commodore 64
 - **Real-time Status Monitoring**: Async ping checks with visual indicators
 - **Quick Look Modals**: Preview services without leaving the dashboard
 - **Keyboard Navigation**: Full keyboard control across all themes
@@ -118,6 +118,33 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 - Quick Look modal for service preview
 - Dark cockpit aesthetic with green/cyan HUD displays
 
+### 🖖 LCARS Interface Theme (`/lcars`)
+- Star Trek LCARS 47 command interface (USS Enterprise NCC-1701-D)
+- Authentic LCARS color scheme with gradient panels
+- Animated bridge console with power distribution bars
+- Warp core animation with pulsing segments
+- Red Alert mode toggle (changes entire interface to red)
+- Real-time service status with color-coded indicators
+- Tactical systems display with fluctuating power readings
+- Stardate display and system status grid
+- Quick Look modal with LCARS styling
+- Antonio font for authentic Star Trek feel
+- Keyboard shortcuts: Click RED ALERT button, refresh, search
+
+### 💾 Commodore 64 Theme (`/c64`)
+- Authentic Commodore 64 BASIC V2 interface
+- True 16-color C64 palette (exact hex values)
+- Slow character-by-character text rendering (15ms per char)
+- BASIC boot sequence with READY prompt
+- Program LOAD and RUN simulation
+- Blinking cursor that follows text rendering
+- CRT scanline effects and screen glow
+- Two-column service layout for better fit
+- Real-time service status checking with [✓]/[✗] indicators
+- Keyboard navigation: Press 1-9, 0 to open services
+- R to refresh, ESC to close modal
+- Uppercase text (authentic C64 limitation)
+
 ## Installation
 
 1. Clone this repository:
@@ -194,6 +221,12 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 **Aviation Cockpit:**
 - Toggle switches to control systems | Radio buttons to adjust frequencies | Click warning lights to toggle alerts | Click services to open | Right-click for Quick Look | ESC: Close modal
 
+**LCARS Interface:**
+- RED ALERT button toggles alert mode | Search bar filters services | Click services to open | Quick Look button on hover | Refresh button in header | Click outside modal to close
+
+**Commodore 64:**
+- Press number keys 1-9, 0 to open services | Click service name to open in new window | R: Refresh page | ESC: Close modal | Slow text rendering simulates C64 processor
+
 ## Project Structure
 
 ```
@@ -237,11 +270,21 @@ dashboard/
 │   │   └── app.js         # Sonar, periscope, torpedo tubes logic
 │   └── css/
 │       └── style.css      # Submarine control styling
-└── aviation/              # Aviation Cockpit theme
+├── aviation/              # Aviation Cockpit theme
+│   ├── js/
+│   │   └── app.js         # Instruments, radio, switches logic
+│   └── css/
+│       └── style.css      # Cockpit panel styling
+├── lcars/                 # LCARS Interface theme
+│   ├── js/
+│   │   └── app.js         # Bridge console, power bars, Red Alert
+│   └── css/
+│       └── style.css      # LCARS colors and gradients
+└── c64/                   # Commodore 64 theme
     ├── js/
-    │   └── app.js         # Instruments, radio, switches logic
+    │   └── app.js         # Slow text rendering, BASIC simulation
     └── css/
-        └── style.css      # Cockpit panel styling
+        └── style.css      # C64 16-color palette, CRT effects
 ```
 
 ## Customization

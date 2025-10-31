@@ -163,6 +163,8 @@ body {
     color: var(--c64-yellow);
     margin-top: 15px;
     margin-bottom: 5px;
+    width: 100%;
+    display: block;
 }
 
 .service-line {
@@ -170,6 +172,10 @@ body {
     cursor: pointer;
     transition: color 0.1s;
     padding-left: 20px;
+    display: inline-block;
+    width: 48%;
+    margin-right: 2%;
+    vertical-align: top;
 }
 
 .service-line:hover {
