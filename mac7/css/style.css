@@ -171,6 +171,8 @@ body {
     padding: 0 4px;
     cursor: move;
     user-select: none;
+    touch-action: none;
+    -webkit-user-select: none;
 }
 
 .title-bar-text {
@@ -231,10 +233,12 @@ body {
 
 /* About Window */
 .about-window {
+    position: absolute !important;
     width: 350px;
-    top: 100px;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 100px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 100 !important;
 }
 
 .about-content {
@@ -263,10 +267,12 @@ body {
 
 /* Services Window */
 .services-window {
+    position: absolute !important;
     width: 600px;
     height: 400px;
-    top: 80px;
-    left: 100px;
+    top: 80px !important;
+    left: 100px !important;
+    z-index: 100 !important;
 }
 
 .services-content {
