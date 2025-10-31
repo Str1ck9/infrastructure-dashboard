@@ -246,6 +246,61 @@
     }
   };
 
+  // Window dragging functionality
+  function makeWindowDraggable(windowElement) {
+    const titleBar = windowElement.querySelector('.title-bar');
+    let isDragging = false;
+    let currentX;
+    let currentY;
+    let initialX;
+    let initialY;
+    let xOffset = 0;
+    let yOffset = 0;
+
+    titleBar.addEventListener('mousedown', dragStart);
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('mouseup', dragEnd);
+
+    function dragStart(e) {
+      if (e.target === titleBar || e.target.classList.contains('title-bar-text')) {
+        initialX = e.clientX - xOffset;
+        initialY = e.clientY - yOffset;
+
+        isDragging = true;
+        titleBar.style.cursor = 'move';
+      }
+    }
+
+    function drag(e) {
+      if (isDragging) {
+        e.preventDefault();
+        
+        currentX = e.clientX - initialX;
+        currentY = e.clientY - initialY;
+
+        xOffset = currentX;
+        yOffset = currentY;
+
+        setTranslate(currentX, currentY, windowElement);
+      }
+    }
+
+    function dragEnd(e) {
+      initialX = currentX;
+      initialY = currentY;
+
+      isDragging = false;
+      titleBar.style.cursor = 'move';
+    }
+
+    function setTranslate(xPos, yPos, el) {
+      el.style.transform = `translate(${xPos}px, ${yPos}px)`;
+    }
+  }
+
+  // Make Program Manager draggable
+  makeWindowDraggable(document.getElementById('programManager'));
+
   // Keyboard shortcuts
   document.addEventListener('keydown', (e) => {
     // Alt+F4 to close
@@ -273,4 +328,4 @@
     }
   });
 
-})();
+});
