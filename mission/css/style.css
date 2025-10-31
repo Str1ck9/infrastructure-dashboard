@@ -1,0 +1,459 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@400;700&display=swap');
+
+:root {
+    --nasa-blue: #0B3D91;
+    --nasa-red: #FC3D21;
+    --console-bg: #1a1a1a;
+    --panel-bg: #0a0a0a;
+    --text-green: #00ff00;
+    --text-amber: #ffaa00;
+    --text-white: #ffffff;
+    --text-gray: #888888;
+    --go-green: #00cc00;
+    --abort-red: #cc0000;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--console-bg);
+    color: var(--text-white);
+    overflow: hidden;
+    height: 100vh;
+}
+
+.mission-control {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+}
+
+/* Header */
+.control-header {
+    background: linear-gradient(180deg, var(--nasa-blue) 0%, #082a5e 100%);
+    border-bottom: 3px solid var(--nasa-red);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.mission-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nasa-logo {
+    font-size: 48px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.mission-title h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: var(--text-white);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.mission-title p {
+    font-size: 12px;
+    color: var(--text-gray);
+    letter-spacing: 2px;
+}
+
+.mission-clock {
+    text-align: center;
+}
+
+.clock-label {
+    font-size: 10px;
+    color: var(--text-gray);
+    letter-spacing: 2px;
+}
+
+.clock-display {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-green);
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    letter-spacing: 2px;
+}
+
+.flight-status {
+    text-align: center;
+}
+
+.status-indicator {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    padding: 10px 30px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.status-indicator.go {
+    background: var(--go-green);
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+}
+
+.status-indicator.no-go {
+    background: var(--abort-red);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+}
+
+.status-label {
+    font-size: 10px;
+    color: var(--text-gray);
+    letter-spacing: 2px;
+}
+
+/* Console Layout */
+.console-layout {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    gap: 10px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.console-panel {
+    background: var(--panel-bg);
+    border: 2px solid #333;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    /* CRT flicker effect */
+    animation: crt-flicker 0.1s infinite alternate;
+}
+
+@keyframes crt-flicker {
+    0% { opacity: 0.98; }
+    100% { opacity: 1; }
+}
+
+.panel-header {
+    background: linear-gradient(180deg, #333 0%, #222 100%);
+    color: var(--text-amber);
+    padding: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 2px;
+    border-bottom: 2px solid var(--nasa-red);
+    text-shadow: 0 0 5px rgba(255, 170, 0, 0.5);
+}
+
+.panel-content {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    /* CRT scanlines */
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.15),
+            rgba(0, 0, 0, 0.15) 1px,
+            transparent 1px,
+            transparent 2px
+        ),
+        var(--panel-bg);
+}
+
+/* Service List */
+.service-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.service-item {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #333;
+    border-left: 4px solid var(--text-gray);
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.service-item:hover {
+    border-left-color: var(--text-green);
+    background: rgba(0, 255, 0, 0.1);
+}
+
+.service-item.online {
+    border-left-color: var(--text-green);
+}
+
+.service-item.offline {
+    border-left-color: var(--abort-red);
+}
+
+.service-name {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--text-white);
+    margin-bottom: 5px;
+}
+
+.service-url {
+    font-size: 11px;
+    color: var(--text-gray);
+}
+
+.service-status {
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+.service-status.online {
+    color: var(--text-green);
+}
+
+.service-status.offline {
+    color: var(--abort-red);
+}
+
+/* Telemetry Canvas */
+#telemetryCanvas {
+    width: 100%;
+    height: auto;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #333;
+    margin-bottom: 15px;
+}
+
+.telemetry-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #333;
+}
+
+.stat-label {
+    display: block;
+    font-size: 10px;
+    color: var(--text-gray);
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.stat-value {
+    display: block;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-green);
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+/* System Gauges */
+.system-gauge {
+    margin-bottom: 20px;
+}
+
+.gauge-label {
+    font-size: 12px;
+    color: var(--text-gray);
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.gauge-bar {
+    height: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #333;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.gauge-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--text-green) 0%, var(--text-amber) 100%);
+    width: 100%;
+    transition: width 0.5s;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.gauge-value {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    color: var(--text-green);
+    text-align: right;
+}
+
+/* Communications Panel */
+.comms-panel {
+    background: var(--panel-bg);
+    border: 2px solid #333;
+    border-radius: 5px;
+    margin: 0 10px 10px 10px;
+    max-height: 150px;
+    display: flex;
+    flex-direction: column;
+}
+
+.comms-log {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 12px;
+    /* CRT scanlines */
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.15),
+            rgba(0, 0, 0, 0.15) 1px,
+            transparent 1px,
+            transparent 2px
+        ),
+        var(--panel-bg);
+}
+
+.log-entry {
+    margin-bottom: 5px;
+    color: var(--text-green);
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.log-time {
+    color: var(--text-amber);
+    margin-right: 10px;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: var(--panel-bg);
+    border: 3px solid var(--nasa-red);
+    border-radius: 10px;
+    width: 500px;
+    max-width: 90%;
+    box-shadow: 0 0 30px rgba(252, 61, 33, 0.5);
+}
+
+.modal-header {
+    background: linear-gradient(180deg, #333 0%, #222 100%);
+    color: var(--text-amber);
+    padding: 15px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 2px;
+    border-bottom: 2px solid var(--nasa-red);
+}
+
+.modal-body {
+    padding: 20px;
+    color: var(--text-white);
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.modal-footer {
+    padding: 15px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    border-top: 1px solid #333;
+}
+
+.btn {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    letter-spacing: 2px;
+    transition: all 0.3s;
+}
+
+.btn-go {
+    background: var(--go-green);
+    color: #000;
+}
+
+.btn-go:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    transform: scale(1.05);
+}
+
+.btn-abort {
+    background: var(--abort-red);
+    color: #fff;
+}
+
+.btn-abort:hover {
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    transform: scale(1.05);
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
