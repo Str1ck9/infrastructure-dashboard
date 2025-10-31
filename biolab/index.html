@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BioLab Containment Facility - Infrastructure Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Saira:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="biolab-facility">
+    <!-- Bio-luminescent Background -->
+    <div class="bio-background">
+      <div class="cell-pattern"></div>
+    </div>
+
+    <!-- Main Interface -->
+    <div class="lab-interface">
+      <!-- Header Control -->
+      <header class="facility-header">
+        <div class="facility-branding">
+          <div class="bio-icon">☣</div>
+          <div class="facility-title">
+            <h1>BIOLAB CONTAINMENT FACILITY</h1>
+            <p class="sector">LEVEL 4 BIOSAFETY • SECTOR 9-B</p>
+          </div>
+        </div>
+        <div class="contamination-monitor">
+          <div class="contamination-label">CONTAMINATION LEVEL</div>
+          <div class="contamination-meter">
+            <div class="meter-fill" id="contaminationFill"></div>
+          </div>
+          <div class="contamination-value" id="contaminationValue">2.3%</div>
+        </div>
+        <div class="facility-status">
+          <div class="status-light active" id="statusLight"></div>
+          <div class="status-label">QUARANTINE ACTIVE</div>
+        </div>
+      </header>
+
+      <!-- Main Lab Container -->
+      <div class="lab-container">
+        <!-- Left Panel: Vital Signs -->
+        <aside class="vitals-panel">
+          <div class="panel-header">
+            <span class="panel-icon">❤️</span>
+            <span>VITAL SIGNS</span>
+          </div>
+          <div class="panel-content">
+            <div class="vital-monitor">
+              <div class="vital-label">SYSTEM HEARTBEAT</div>
+              <canvas id="heartbeatCanvas" class="vital-canvas"></canvas>
+              <div class="vital-value" id="heartbeatValue">72 BPM</div>
+            </div>
+            <div class="vital-monitor">
+              <div class="vital-label">MUTATION INDEX</div>
+              <div class="mutation-bar">
+                <div class="mutation-fill" id="mutationFill"></div>
+              </div>
+              <div class="vital-value" id="mutationValue">14.7%</div>
+            </div>
+            <div class="vital-monitor">
+              <div class="vital-label">CELL GROWTH</div>
+              <canvas id="growthCanvas" class="vital-canvas"></canvas>
+              <div class="vital-value" id="growthValue">+3.2%/hr</div>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <div class="lab-time">
+              <div class="time-label">LAB TIME</div>
+              <div class="time-value" id="labTime">00:00:00</div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Center: Containment Tubes -->
+        <main class="containment-chamber">
+          <div class="chamber-header">
+            <span>ORGANISM CONTAINMENT TUBES</span>
+            <div class="decontamination-btn" onclick="decontaminate()">
+              <span>🧪</span> DECONTAMINATE ALL
+            </div>
+          </div>
+          <div class="tube-grid" id="tubeGrid">
+            <!-- Tubes will be generated dynamically -->
+          </div>
+        </main>
+
+        <!-- Right Panel: Activity Log -->
+        <aside class="activity-panel">
+          <div class="panel-header">
+            <span class="panel-icon">📋</span>
+            <span>LAB ACTIVITY</span>
+          </div>
+          <div class="panel-content activity-log" id="activityLog">
+            <!-- Activity entries will be added here -->
+          </div>
+        </aside>
+      </div>
+
+      <!-- Microscope View Modal -->
+      <div id="microscopeModal" class="microscope-modal hidden">
+        <div class="microscope-overlay"></div>
+        <div class="microscope-viewer">
+          <div class="microscope-header">
+            <span id="microscopeTitle">SPECIMEN ANALYSIS</span>
+            <button class="close-btn" onclick="closeMicroscope()">✕</button>
+          </div>
+          <div class="microscope-view">
+            <canvas id="microscopeCanvas"></canvas>
+            <div class="microscope-crosshair"></div>
+            <div class="zoom-indicator">MAGNIFICATION: 400X</div>
+          </div>
+          <div class="specimen-data">
+            <div class="data-grid">
+              <div class="data-item">
+                <span class="data-label">SPECIMEN ID:</span>
+                <span class="data-value" id="specimenId">—</span>
+              </div>
+              <div class="data-item">
+                <span class="data-label">STATUS:</span>
+                <span class="data-value" id="specimenStatus">—</span>
+              </div>
+              <div class="data-item">
+                <span class="data-label">VIABILITY:</span>
+                <span class="data-value" id="specimenViability">—</span>
+              </div>
+              <div class="data-item">
+                <span class="data-label">MUTATION:</span>
+                <span class="data-value" id="specimenMutation">—</span>
+              </div>
+              <div class="data-item">
+                <span class="data-label">GROWTH RATE:</span>
+                <span class="data-value" id="specimenGrowth">—</span>
+              </div>
+              <div class="data-item">
+                <span class="data-label">CONTAINMENT:</span>
+                <span class="data-value" id="specimenContainment">—</span>
+              </div>
+            </div>
+          </div>
+          <div class="microscope-controls">
+            <button class="btn btn-analyze" onclick="analyzeSpecimen()">ANALYZE DNA</button>
+            <button class="btn btn-quarantine" onclick="quarantineTube()">QUARANTINE</button>
+            <button class="btn btn-terminate" onclick="terminateSpecimen()">TERMINATE</button>
+            <button class="btn btn-close" onclick="closeMicroscope()">CLOSE</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- DNA Helix Overlay (shows during analysis) -->
+      <div id="dnaOverlay" class="dna-overlay hidden">
+        <svg id="dnaHelix" viewBox="0 0 200 400">
+          <!-- DNA will be drawn here -->
+        </svg>
+        <div class="analysis-text">ANALYZING DNA SEQUENCE...</div>
+      </div>
+
+      <!-- Keyboard Shortcuts -->
+      <div class="shortcuts-hint">
+        <kbd>A</kbd> Analyze specimen | <kbd>Q</kbd> Quarantine | <kbd>D</kbd> Decontaminate all | <kbd>ESC</kbd> Close
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
