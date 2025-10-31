@@ -250,20 +250,24 @@
   function makeWindowDraggable(windowElement) {
     const titleBar = windowElement.querySelector('.title-bar');
     let isDragging = false;
-    let currentX = 0;
-    let currentY = 0;
-    let initialX = 0;
-    let initialY = 0;
+    let currentX;
+    let currentY;
+    let initialX;
+    let initialY;
     let xOffset = 0;
     let yOffset = 0;
 
+    titleBar.addEventListener('mousedown', dragStart);
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('mouseup', dragEnd);
+
     function dragStart(e) {
-      // Only drag if clicking on title bar itself or title text (not buttons)
-      if ((e.target === titleBar || e.target.classList.contains('title-bar-text')) && 
-          !e.target.closest('.title-bar-controls')) {
+      if (e.target === titleBar || e.target.classList.contains('title-bar-text')) {
         initialX = e.clientX - xOffset;
         initialY = e.clientY - yOffset;
+
         isDragging = true;
+        titleBar.style.cursor = 'move';
       }
     }
 
@@ -277,19 +281,21 @@
         xOffset = currentX;
         yOffset = currentY;
 
-        windowElement.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+        setTranslate(currentX, currentY, windowElement);
       }
     }
 
     function dragEnd(e) {
       initialX = currentX;
       initialY = currentY;
+
       isDragging = false;
+      titleBar.style.cursor = 'move';
     }
 
-    titleBar.addEventListener('mousedown', dragStart);
-    document.addEventListener('mousemove', drag);
-    document.addEventListener('mouseup', dragEnd);
+    function setTranslate(xPos, yPos, el) {
+      el.style.transform = `translate(${xPos}px, ${yPos}px)`;
+    }
   }
 
   // Make Program Manager draggable
