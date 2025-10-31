@@ -4,11 +4,11 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 
 ## Features
 
-- **6 Unique Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, UNIX Mainframe, Arcade (Pac-Man), and Military Command 2025
+- **8 Unique Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, Windows 3.1, Gopher Protocol, UNIX Mainframe, Arcade (Pac-Man), and Military Command 2025
 - **Real-time Status Monitoring**: Async ping checks with visual indicators
 - **Quick Look Modals**: Preview services without leaving the dashboard
 - **Keyboard Navigation**: Full keyboard control across all themes
-- **Interactive Elements**: Modem speed simulation, arcade gameplay, animated radar, telemetry gauges
+- **Interactive Elements**: Modem speed simulation, arcade gameplay, animated radar, telemetry gauges, Program Manager groups
 - **Responsive Design**: Works on desktop and mobile devices
 - **Retro Aesthetics**: Authentic period-accurate designs from 1960s to 2025
 
@@ -32,6 +32,25 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 - Desktop-style window chrome
 - Toolbar with functional buttons
 - "You've Got Mail!" notifications
+
+### 🪟 Windows 3.1 Theme (`/win31`)
+- Authentic Windows 3.1 Program Manager interface
+- Group windows with service icons
+- Classic gray window chrome and menu bars
+- Dialog boxes with service properties
+- Hourglass loading cursor
+- Status bar with online counts and time display
+- Desktop icons and draggable windows
+
+### 🐹 Gopher Protocol Theme (`/gopher`)
+- 1990s text-based Gopher client aesthetic
+- CRT monitor effects with amber phosphor glow
+- Numbered menu navigation (type number + ENTER)
+- ASCII art header and borders
+- Keyboard-driven interface with command prompt
+- Service status indicators using Gopher item types
+- Help overlay with protocol information
+- Commands: Q (quit), R (refresh), ? (help)
 
 ### 🖥️ UNIX Mainframe Theme (`/unix`)
 - 1990s terminal monitor aesthetic
@@ -109,6 +128,15 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 **Star Trek TOS:**
 - Red Alert button toggles alert mode | Search bar filters services | Quick View for modal preview
 
+**AOL 3.0:**
+- Click icons to open services | Double-click for Quick Look | Menu bar for navigation | Desktop-style interaction
+
+**Windows 3.1:**
+- Double-click program icons | Right-click for properties | File menu operations | Desktop icons functional
+
+**Gopher:**
+- Type item number + ENTER to select | Arrow keys to navigate | R: Refresh | ?: Help | Q: Quit | ESC: Close overlays
+
 **UNIX Mainframe:**
 - R: Refresh processes | S: Sort by status | /: Search | Q: Logout | Arrow Keys: Navigate | Enter: Quick view
 
@@ -131,6 +159,16 @@ dashboard/
 ├── tos/                   # Star Trek TOS theme
 ├── bbs/                   # BBS/Terminal theme
 ├── aol/                   # AOL 3.0 theme
+├── win31/                 # Windows 3.1 theme
+│   ├── js/
+│   │   └── app.js         # Program Manager logic
+│   └── css/
+│       └── style.css      # Windows 3.1 styling
+├── gopher/                # Gopher Protocol theme
+│   ├── js/
+│   │   └── app.js         # Gopher client logic
+│   └── css/
+│       └── style.css      # Terminal styling
 ├── unix/                  # UNIX Mainframe theme
 ├── arcade/                # Arcade (Pac-Man) theme
 └── mil2025/               # Military Command 2025 theme
