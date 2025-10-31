@@ -154,42 +154,27 @@ function showServiceDetails(service) {
 // Desktop Icons
 function setupDesktopIcons() {
     document.querySelectorAll('.desktop-icons .icon').forEach(icon => {
-        // Click handler
+        // Single-click handler
         icon.addEventListener('click', function(e) {
-            // Get action from the icon itself or parent
-            let target = e.target;
-            while (target && !target.dataset.action) {
-                target = target.parentElement;
-            }
+            const action = icon.dataset.action;
+            console.log('Icon clicked:', action);
             
-            if (target && target.dataset.action) {
-                const action = target.dataset.action;
-                console.log('Icon clicked:', action);
-                
-                if (action === 'about') {
-                    showWindow('aboutWindow');
-                } else if (action === 'services') {
-                    showWindow('servicesWindow');
-                }
+            if (action === 'about') {
+                showWindow('aboutWindow');
+            } else if (action === 'services') {
+                showWindow('servicesWindow');
             }
         });
         
         // Double-click handler for Mac-like behavior
         icon.addEventListener('dblclick', function(e) {
-            let target = e.target;
-            while (target && !target.dataset.action) {
-                target = target.parentElement;
-            }
+            const action = icon.dataset.action;
+            console.log('Icon double-clicked:', action);
             
-            if (target && target.dataset.action) {
-                const action = target.dataset.action;
-                console.log('Icon double-clicked:', action);
-                
-                if (action === 'about') {
-                    showWindow('aboutWindow');
-                } else if (action === 'services') {
-                    showWindow('servicesWindow');
-                }
+            if (action === 'about') {
+                showWindow('aboutWindow');
+            } else if (action === 'services') {
+                showWindow('servicesWindow');
             }
         });
     });
