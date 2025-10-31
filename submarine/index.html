@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Submarine Command • USS ATLAS Infrastructure Monitor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../common/css/reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script defer src="../common/js/services.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <!-- Submarine Interior -->
+  <div class="submarine">
+    <!-- Top Control Bar -->
+    <header class="control-bar">
+      <div class="bar-left">
+        <div class="sub-badge">
+          <div class="badge-icon">⚓</div>
+          <div class="badge-text">
+            <div class="badge-title">USS ATLAS</div>
+            <div class="badge-sub">SSN-775 • INFRASTRUCTURE COMMAND</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bar-center">
+        <div class="depth-display">
+          <div class="depth-label">DEPTH</div>
+          <div class="depth-value" id="depthValue">350</div>
+          <div class="depth-unit">METERS</div>
+        </div>
+        <div class="bearing-display">
+          <div class="bearing-label">BEARING</div>
+          <div class="bearing-value" id="bearingValue">270</div>
+          <div class="bearing-unit">DEGREES</div>
+        </div>
+        <div class="speed-display">
+          <div class="speed-label">SPEED</div>
+          <div class="speed-value" id="speedValue">12</div>
+          <div class="speed-unit">KNOTS</div>
+        </div>
+      </div>
+
+      <div class="bar-right">
+        <div class="clock-display">
+          <div class="clock-label">ZULU TIME</div>
+          <div class="clock-value" id="zuluTime">00:00:00</div>
+        </div>
+        <button class="alert-button" id="alertButton">
+          <span class="alert-icon">⚠</span>
+          <span class="alert-text">BATTLE STATIONS</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Control Room -->
+    <main class="control-room">
+      <!-- Left Panel - Sonar -->
+      <aside class="sonar-panel">
+        <div class="panel-header">
+          <div class="panel-title">SONAR DISPLAY</div>
+          <div class="panel-status">ACTIVE</div>
+        </div>
+        
+        <div class="sonar-screen">
+          <canvas id="sonarCanvas" class="sonar-canvas"></canvas>
+          <div class="sonar-crosshair"></div>
+          <div class="sonar-rings"></div>
+        </div>
+
+        <div class="sonar-controls">
+          <div class="control-group">
+            <div class="control-label">RANGE</div>
+            <div class="control-value" id="sonarRange">5.0 NM</div>
+          </div>
+          <div class="control-group">
+            <div class="control-label">CONTACTS</div>
+            <div class="control-value" id="contactCount">0</div>
+          </div>
+          <div class="control-group">
+            <div class="control-label">MODE</div>
+            <div class="control-value">PASSIVE</div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Center Panel - Services / Weapons -->
+      <section class="weapons-panel">
+        <div class="panel-header">
+          <div class="panel-title">TORPEDO TUBES • SERVICE STATUS</div>
+          <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="SEARCH SERVICES..." />
+          </div>
+        </div>
+
+        <div class="tubes-grid" id="tubesGrid">
+          <!-- Service tubes will be rendered here -->
+        </div>
+
+        <div class="weapons-footer">
+          <div class="footer-stat">
+            <div class="stat-label">TOTAL</div>
+            <div class="stat-value" id="totalTubes">0</div>
+          </div>
+          <div class="footer-stat">
+            <div class="stat-label">LOADED</div>
+            <div class="stat-value loaded" id="loadedTubes">0</div>
+          </div>
+          <div class="footer-stat">
+            <div class="stat-label">EMPTY</div>
+            <div class="stat-value empty" id="emptyTubes">0</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Panel - Periscope / Systems -->
+      <aside class="systems-panel">
+        <div class="panel-header">
+          <div class="panel-title">PERISCOPE VIEW</div>
+          <div class="panel-status">RAISED</div>
+        </div>
+
+        <div class="periscope-view">
+          <canvas id="periscopeCanvas" class="periscope-canvas"></canvas>
+          <div class="periscope-reticle">
+            <div class="reticle-line horizontal"></div>
+            <div class="reticle-line vertical"></div>
+            <div class="reticle-circle"></div>
+          </div>
+          <div class="periscope-hud">
+            <div class="hud-line">RANGE: <span id="targetRange">---</span> M</div>
+            <div class="hud-line">ANGLE: <span id="targetAngle">---</span>°</div>
+          </div>
+        </div>
+
+        <div class="pressure-gauges">
+          <div class="gauge">
+            <div class="gauge-label">HULL INTEGRITY</div>
+            <div class="gauge-dial">
+              <canvas id="integrityGauge" class="gauge-canvas"></canvas>
+            </div>
+            <div class="gauge-value">98%</div>
+          </div>
+          
+          <div class="gauge">
+            <div class="gauge-label">OXYGEN LEVEL</div>
+            <div class="gauge-dial">
+              <canvas id="oxygenGauge" class="gauge-canvas"></canvas>
+            </div>
+            <div class="gauge-value">87%</div>
+          </div>
+        </div>
+
+        <div class="log-panel">
+          <div class="log-header">CAPTAIN'S LOG</div>
+          <div class="log-entries" id="logEntries">
+            <div class="log-entry">
+              <span class="log-time">00:00:00Z</span>
+              <span class="log-text">Systems initialized. Ready to dive.</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Bottom Status Bar -->
+    <footer class="status-bar">
+      <div class="status-section">
+        <span class="status-dot"></span>
+        <span id="statusText">ALL SYSTEMS NOMINAL</span>
+      </div>
+      <div class="status-section">
+        <kbd>S</kbd> Sonar Ping
+        <kbd>P</kbd> Periscope
+        <kbd>R</kbd> Reload Status
+        <kbd>A</kbd> Alert Mode
+        <kbd>/</kbd> Search
+      </div>
+      <div class="status-section">
+        <span>DEPTH: <span id="statusDepth">350M</span></span>
+        <span>PRESSURE: <span id="statusPressure">35 BAR</span></span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Tube Detail Modal -->
+  <div class="modal hidden" id="tubeModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title" id="modalTitle">TUBE SPECIFICATIONS</div>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Content will be populated by JS -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="launchBtn">LAUNCH SERVICE</button>
+        <button class="btn btn-secondary" onclick="closeModal()">CANCEL</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Help Overlay -->
+  <div class="help-overlay hidden" id="helpOverlay">
+    <div class="help-content">
+      <div class="help-header">SUBMARINE COMMAND INTERFACE</div>
+      <div class="help-section">
+        <h3>CONTROLS</h3>
+        <ul>
+          <li><kbd>S</kbd> Trigger sonar ping</li>
+          <li><kbd>P</kbd> Rotate periscope view</li>
+          <li><kbd>R</kbd> Reload service status</li>
+          <li><kbd>A</kbd> Toggle battle stations alert</li>
+          <li><kbd>/</kbd> Focus search field</li>
+          <li><kbd>ESC</kbd> Close modals</li>
+          <li><kbd>?</kbd> Show this help</li>
+        </ul>
+      </div>
+      <div class="help-section">
+        <h3>TUBE STATUS</h3>
+        <ul>
+          <li><span class="help-indicator loaded"></span> LOADED - Service online and ready</li>
+          <li><span class="help-indicator empty"></span> EMPTY - Service offline or unavailable</li>
+          <li>Click any tube to view service details</li>
+          <li>Use LAUNCH button to open service in new window</li>
+        </ul>
+      </div>
+      <button class="btn btn-primary" onclick="closeHelp()">UNDERSTOOD</button>
+    </div>
+  </div>
+</body>
+</html>

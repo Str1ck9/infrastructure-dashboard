@@ -4,11 +4,11 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 
 ## Features
 
-- **9 Unique Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, Windows 3.1, Gopher Protocol, UNIX Mainframe, Arcade (Pac-Man), Military Command 2025, and Spaceport
+- **10 Unique Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, Windows 3.1, Gopher Protocol, UNIX Mainframe, Arcade (Pac-Man), Military Command 2025, Spaceport, and Submarine Command
 - **Real-time Status Monitoring**: Async ping checks with visual indicators
 - **Quick Look Modals**: Preview services without leaving the dashboard
 - **Keyboard Navigation**: Full keyboard control across all themes
-- **Interactive Elements**: Modem speed simulation, arcade gameplay, animated radar, telemetry gauges, Program Manager groups, holographic displays, starfield animations
+- **Interactive Elements**: Modem speed simulation, arcade gameplay, animated radar, telemetry gauges, Program Manager groups, holographic displays, starfield animations, sonar ping, periscope view, pressure gauges
 - **Responsive Design**: Works on desktop and mobile devices
 - **Retro & Futuristic Aesthetics**: Authentic period-accurate designs from 1960s to far-future 2425
 
@@ -92,6 +92,19 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 - Glowing service cards with hover animations
 - Keyboard shortcuts: F1 (help), F5 (refresh), / (search), ESC (close)
 
+### ⚓ Submarine Command Theme (`/submarine`)
+- Cold War era submarine control room (USS ATLAS SSN-775)
+- Animated sonar display with rotating sweep and contact detection
+- Periscope view with underwater animation and light rays
+- Services displayed as torpedo tubes (LOADED/EMPTY status)
+- Brass and copper vintage submarine aesthetics
+- Pressure gauges for hull integrity and oxygen levels
+- Simulated depth, bearing, and speed instruments
+- Captain's log with timestamped entries
+- Battle Stations alert mode
+- Zulu time (UTC) display
+- Keyboard shortcuts: S (sonar ping), P (periscope rotate), R (reload), A (alert mode), / (search), ? (help)
+
 ## Installation
 
 1. Clone this repository:
@@ -162,6 +175,9 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 **Spaceport:**
 - F1: Help overlay | F5: Refresh services | /: Focus search | ESC: Close modals | Click service cards to view details
 
+**Submarine:**
+- S: Sonar ping | P: Periscope rotate | R: Reload status | A: Battle stations alert | /: Search | ?: Help | Click tubes for details
+
 ## Project Structure
 
 ```
@@ -195,9 +211,14 @@ dashboard/
 │   │   └── app.js         # Main application
 │   └── css/
 │       └── style.css      # Military styling
-└── spaceport/             # Spaceport theme
+├── spaceport/             # Spaceport theme
+│   ├── js/
+│   │   └── app.js         # Starfield, hologram, service logic
+│   └── css/
+│       └── style.css      # Futuristic glassmorphism styling
+└── submarine/             # Submarine Command theme
     ├── js/
-    │   └── app.js         # Starfield, hologram, service logic
+    │   └── app.js         # Sonar, periscope, torpedo tubes logic
     └── css/
         └── style.css      # Futuristic glassmorphism styling
 ```
