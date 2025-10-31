@@ -4,7 +4,7 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 
 ## Features
 
-- **18 Unique Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, Windows 3.1, Gopher Protocol, UNIX Mainframe, Arcade (Pac-Man), Military Command 2025, Spaceport, Submarine Command, Aviation Cockpit, LCARS Interface, Commodore 64, AI Command Core, Data Center Rack View, DOS Shell, Mac System 7, and NASA Mission Control
+- **19 Unique Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, Windows 3.1, Gopher Protocol, UNIX Mainframe, Arcade (Pac-Man), Military Command 2025, Spaceport, Submarine Command, Aviation Cockpit, LCARS Interface, Commodore 64, AI Command Core, Data Center Rack View, DOS Shell, Mac System 7, NASA Mission Control, and Cyber Defense Center
 - **Real-time Status Monitoring**: Async ping checks with visual indicators
 - **Quick Look Modals**: Preview services without leaving the dashboard
 - **Keyboard Navigation**: Full keyboard control across all themes
@@ -210,6 +210,27 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 - Keyboard shortcuts: R (manual refresh), ESC (close modal)
 - Auto-updating telemetry, gauges, and mission clock
 
+### 🛡️ Cyber Defense Center Theme (`/cyberdefense`)
+- USCYBERCOM / SOC (Security Operations Center) war room interface
+- Animated world map with simplified continent outlines (Canvas-based)
+- Real-time attack arc visualization showing inbound (red) and outbound (blue) traffic
+- Service nodes displayed on map as green (secured) or red (compromised) dots with glow effects
+- Parabolic attack trajectories with particle trails
+- Threat level meter with LOW/GUARDED/ELEVATED/SEVERE status gradients
+- Services monitor panel with SECURED/COMPROMISED status indicators
+- Threat intelligence dashboard with attacks blocked, services online, response time, uptime stats
+- IDS (Intrusion Detection System) log feed with color-coded severity (green=info, yellow=warning, red=alert, blue=info)
+- Auto-scroll and clear log controls
+- UTC clock display
+- Simulated attack detection with source attribution (China, Russia, North Korea, Tor Network, Unknown)
+- Service detail modal with DEPLOY, ISOLATE, and CLOSE action buttons
+- Pulsing shield icon animation
+- Attack counter incrementing with each detected threat
+- Share Tech Mono monospace font, Rajdhani sans-serif for headers
+- Cyber color scheme: blue (#00d4ff), red (#ff0044), green (#00ff88)
+- Map rendering at 20 FPS with attack generation every 2 seconds
+- Keyboard shortcuts: S (manual scan), ESC (close modal)
+
 ## Installation
 
 1. Clone this repository:
@@ -304,6 +325,9 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 **NASA Mission Control:**
 - Click service in Flight Director panel to view details | LAUNCH button opens service | R key: Manual refresh | ESC: Close modal | Telemetry auto-updates | Watch MET clock count mission time | GO/NO-GO status changes with service health
 
+**Cyber Defense Center:**
+- Click services in monitor to view details | Watch animated attack arcs on world map | S key: Manual security scan | DEPLOY button opens service | ISOLATE: Alert notification | CLEAR: Reset IDS log | AUTO-SCROLL: Toggle log scrolling | Threat level updates automatically | ESC: Close modal
+
 ## Project Structure
 
 ```
@@ -377,11 +401,16 @@ dashboard/
 │   │   └── app.js         # Draggable windows, Finder, balloon help
 │   └── css/
 │       └── style.css      # Platinum UI, beveled chrome, Chicago font
-└── mission/               # NASA Mission Control theme
+├── mission/               # NASA Mission Control theme
+│   ├── js/
+│   │   └── app.js         # Telemetry canvas, MET clock, comms log
+│   └── css/
+│       └── style.css      # NASA colors, CRT effects, flight console
+└── cyberdefense/          # Cyber Defense Center theme
     ├── js/
-    │   └── app.js         # Telemetry canvas, MET clock, comms log
+    │   └── app.js         # World map canvas, attack arcs, IDS log
     └── css/
-        └── style.css      # NASA colors, CRT effects, flight console
+        └── style.css      # Cyber color scheme, SOC war room styling
 ```
 
 ## Customization
