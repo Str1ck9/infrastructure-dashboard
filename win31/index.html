@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Program Manager - Infrastructure Services</title>
+  <link rel="stylesheet" href="../common/css/reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script defer src="../common/js/services.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <!-- Desktop Background -->
+  <div class="desktop">
+    <!-- Desktop Icons -->
+    <div class="desktop-icons">
+      <div class="desktop-icon" data-action="about">
+        <div class="icon-image">
+          <div class="icon-computer"></div>
+        </div>
+        <div class="icon-label">About</div>
+      </div>
+    </div>
+
+    <!-- Program Manager Window -->
+    <div class="window program-manager" id="programManager">
+      <div class="title-bar">
+        <div class="title-bar-text">Program Manager</div>
+        <div class="title-bar-controls">
+          <button class="minimize-btn" aria-label="Minimize">_</button>
+          <button class="maximize-btn" aria-label="Maximize">▲</button>
+          <button class="close-btn" aria-label="Close">×</button>
+        </div>
+      </div>
+
+      <!-- Menu Bar -->
+      <div class="menu-bar">
+        <div class="menu-item">File</div>
+        <div class="menu-item">Options</div>
+        <div class="menu-item">Window</div>
+        <div class="menu-item">Help</div>
+      </div>
+
+      <!-- Window Content -->
+      <div class="window-content">
+        <!-- Group Windows Container -->
+        <div id="groupWindows" class="group-windows"></div>
+      </div>
+
+      <!-- Status Bar -->
+      <div class="status-bar">
+        <div class="status-section">
+          <span id="statusText">Ready</span>
+        </div>
+        <div class="status-section">
+          <span id="serviceCount">0 items</span>
+        </div>
+        <div class="status-section">
+          <span id="onlineStatus">Online: 0</span>
+        </div>
+        <div class="status-section">
+          <span id="timeDisplay">12:00 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- About Dialog -->
+    <div class="dialog about-dialog hidden" id="aboutDialog">
+      <div class="title-bar">
+        <div class="title-bar-text">About Infrastructure Manager</div>
+        <div class="title-bar-controls">
+          <button class="close-btn" onclick="closeAbout()">×</button>
+        </div>
+      </div>
+      <div class="dialog-content">
+        <div class="about-icon"></div>
+        <div class="about-text">
+          <h2>Infrastructure Manager</h2>
+          <p>Version 3.1</p>
+          <p>Copyright © 2025</p>
+          <p>System Resources: <span id="memoryInfo">75% Free</span></p>
+          <hr />
+          <p>Monitor and manage your infrastructure services with the classic Windows 3.1 interface.</p>
+        </div>
+      </div>
+      <div class="dialog-buttons">
+        <button class="win-button" onclick="closeAbout()">OK</button>
+      </div>
+    </div>
+
+    <!-- Service Info Dialog -->
+    <div class="dialog service-dialog hidden" id="serviceDialog">
+      <div class="title-bar">
+        <div class="title-bar-text">Service Properties</div>
+        <div class="title-bar-controls">
+          <button class="close-btn" onclick="closeServiceDialog()">×</button>
+        </div>
+      </div>
+      <div class="dialog-content">
+        <div class="properties-grid" id="serviceProperties">
+          <!-- Properties will be inserted here -->
+        </div>
+      </div>
+      <div class="dialog-buttons">
+        <button class="win-button" onclick="openServiceUrl()">Open</button>
+        <button class="win-button" onclick="closeServiceDialog()">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Hourglass Cursor Overlay -->
+    <div class="hourglass-overlay hidden" id="hourglassOverlay">
+      <div class="hourglass"></div>
+    </div>
+  </div>
+</body>
+</html>

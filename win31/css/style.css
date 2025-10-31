@@ -1,0 +1,520 @@
+/* Windows 3.1 Theme - Authentic 16-bit UI */
+
+:root {
+  --win-gray: #c0c0c0;
+  --win-dark-gray: #808080;
+  --win-light-gray: #dfdfdf;
+  --win-white: #ffffff;
+  --win-black: #000000;
+  --win-blue: #000080;
+  --win-teal: #008080;
+  --desktop-teal: #008080;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'MS Sans Serif', 'Microsoft Sans Serif', sans-serif;
+  font-size: 11px;
+  overflow: hidden;
+  cursor: default;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Desktop */
+.desktop {
+  width: 100vw;
+  height: 100vh;
+  background: var(--desktop-teal);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Desktop Icons */
+.desktop-icons {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.desktop-icon {
+  width: 70px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.desktop-icon:active .icon-image {
+  filter: invert(1);
+}
+
+.icon-image {
+  width: 32px;
+  height: 32px;
+  margin: 0 auto 4px;
+  position: relative;
+}
+
+.icon-computer {
+  width: 32px;
+  height: 32px;
+  background: var(--win-gray);
+  border: 2px outset var(--win-gray);
+  position: relative;
+}
+
+.icon-computer::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  height: 16px;
+  background: var(--win-blue);
+  border: 1px solid var(--win-black);
+}
+
+.icon-label {
+  color: var(--win-white);
+  text-shadow: 1px 1px 0 var(--win-black);
+  font-size: 11px;
+  word-wrap: break-word;
+}
+
+/* Window */
+.window {
+  position: absolute;
+  background: var(--win-gray);
+  border: 2px outset var(--win-gray);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.program-manager {
+  left: 50px;
+  top: 50px;
+  width: 800px;
+  height: 600px;
+  max-width: calc(100vw - 100px);
+  max-height: calc(100vh - 100px);
+}
+
+/* Title Bar */
+.title-bar {
+  background: var(--win-blue);
+  color: var(--win-white);
+  padding: 2px 2px 2px 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 18px;
+  cursor: move;
+}
+
+.title-bar-text {
+  font-weight: bold;
+  font-size: 11px;
+  letter-spacing: 0;
+}
+
+.title-bar-controls {
+  display: flex;
+  gap: 2px;
+}
+
+.title-bar-controls button {
+  width: 16px;
+  height: 14px;
+  background: var(--win-gray);
+  border: 1px outset var(--win-gray);
+  font-size: 10px;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.title-bar-controls button:active {
+  border-style: inset;
+}
+
+/* Menu Bar */
+.menu-bar {
+  display: flex;
+  background: var(--win-gray);
+  border-bottom: 2px solid var(--win-white);
+  border-top: 2px solid var(--win-white);
+  padding: 2px;
+}
+
+.menu-item {
+  padding: 2px 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.menu-item:hover {
+  background: var(--win-blue);
+  color: var(--win-white);
+}
+
+.menu-item:active {
+  background: var(--win-dark-gray);
+}
+
+/* Window Content */
+.window-content {
+  flex: 1;
+  background: var(--win-gray);
+  overflow: auto;
+  padding: 4px;
+}
+
+/* Group Windows */
+.group-windows {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+  padding: 10px;
+}
+
+.group-window {
+  background: var(--win-gray);
+  border: 2px outset var(--win-gray);
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.group-title-bar {
+  background: var(--win-blue);
+  color: var(--win-white);
+  padding: 2px 4px;
+  font-weight: bold;
+  font-size: 11px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.group-content {
+  flex: 1;
+  padding: 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 64px);
+  gap: 12px;
+  align-content: start;
+}
+
+/* Program Icon */
+.program-icon {
+  width: 64px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.program-icon:active .icon-box {
+  border-style: inset;
+}
+
+.icon-box {
+  width: 32px;
+  height: 32px;
+  margin: 0 auto 4px;
+  background: var(--win-gray);
+  border: 2px outset var(--win-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.icon-box::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: var(--win-gray);
+  border: 1px solid var(--win-black);
+}
+
+.icon-status {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--win-black);
+}
+
+.icon-status.online {
+  background: #00ff00;
+}
+
+.icon-status.offline {
+  background: #ff0000;
+}
+
+.icon-status.checking {
+  background: #ffff00;
+  animation: blink 1s steps(2) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0.3; }
+}
+
+.program-label {
+  font-size: 10px;
+  word-wrap: break-word;
+  line-height: 1.2;
+}
+
+/* Status Bar */
+.status-bar {
+  display: flex;
+  background: var(--win-gray);
+  border-top: 2px solid var(--win-white);
+  padding: 2px;
+  gap: 2px;
+}
+
+.status-section {
+  padding: 2px 6px;
+  border: 1px inset var(--win-gray);
+  font-size: 10px;
+  flex: 1;
+}
+
+.status-section:last-child {
+  flex: 0 0 80px;
+}
+
+/* Dialog */
+.dialog {
+  position: fixed;
+  background: var(--win-gray);
+  border: 2px outset var(--win-gray);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.dialog.hidden {
+  display: none;
+}
+
+.about-dialog {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+}
+
+.service-dialog {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 450px;
+}
+
+.dialog-content {
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.about-icon {
+  width: 32px;
+  height: 32px;
+  background: var(--win-gray);
+  border: 2px outset var(--win-gray);
+  flex-shrink: 0;
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-text h2 {
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.about-text p {
+  margin: 4px 0;
+  font-size: 11px;
+}
+
+.about-text hr {
+  margin: 8px 0;
+  border: 0;
+  border-top: 1px solid var(--win-dark-gray);
+  border-bottom: 1px solid var(--win-white);
+}
+
+/* Properties Grid */
+.properties-grid {
+  width: 100%;
+}
+
+.property-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 8px;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--win-dark-gray);
+}
+
+.property-label {
+  font-weight: bold;
+  text-align: right;
+}
+
+.property-value {
+  word-break: break-all;
+}
+
+/* Dialog Buttons */
+.dialog-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px 16px;
+}
+
+.win-button {
+  min-width: 75px;
+  padding: 4px 12px;
+  background: var(--win-gray);
+  border: 2px outset var(--win-gray);
+  font-family: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.win-button:active {
+  border-style: inset;
+}
+
+.win-button:focus {
+  outline: 1px dotted var(--win-black);
+  outline-offset: -4px;
+}
+
+/* Hourglass Overlay */
+.hourglass-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  cursor: wait;
+}
+
+.hourglass-overlay.hidden {
+  display: none;
+}
+
+.hourglass {
+  width: 32px;
+  height: 32px;
+  background: var(--win-white);
+  border: 2px solid var(--win-black);
+  position: relative;
+  animation: hourglass-spin 2s linear infinite;
+}
+
+.hourglass::before,
+.hourglass::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.hourglass::before {
+  top: 2px;
+  border-width: 0 8px 12px 8px;
+  border-color: transparent transparent var(--win-black) transparent;
+}
+
+.hourglass::after {
+  bottom: 2px;
+  border-width: 12px 8px 0 8px;
+  border-color: var(--win-black) transparent transparent transparent;
+}
+
+@keyframes hourglass-spin {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
+}
+
+/* Scrollbar Styling (Win 3.1 style) */
+::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--win-gray);
+  border: 1px solid var(--win-dark-gray);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--win-gray);
+  border: 2px outset var(--win-gray);
+}
+
+::-webkit-scrollbar-thumb:active {
+  border-style: inset;
+}
+
+::-webkit-scrollbar-button {
+  background: var(--win-gray);
+  border: 2px outset var(--win-gray);
+  height: 16px;
+}
+
+::-webkit-scrollbar-button:active {
+  border-style: inset;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .program-manager {
+    left: 10px;
+    top: 10px;
+    width: calc(100vw - 20px);
+    height: calc(100vh - 20px);
+  }
+
+  .group-windows {
+    grid-template-columns: 1fr;
+  }
+
+  .dialog {
+    width: calc(100vw - 40px) !important;
+    max-width: 400px;
+  }
+}
