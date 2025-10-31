@@ -26,15 +26,15 @@
 
         <!-- Desktop Icons -->
         <div class="desktop-icons">
-            <div class="icon" data-action="about">
+            <div class="icon" onclick="handleIconClick('about')" ondblclick="handleIconClick('about')">
                 <div class="icon-image">📋</div>
                 <div class="icon-label">About Dashboard</div>
             </div>
-            <div class="icon" data-action="services">
+            <div class="icon" onclick="handleIconClick('services')" ondblclick="handleIconClick('services')">
                 <div class="icon-image">💾</div>
                 <div class="icon-label">Services Folder</div>
             </div>
-            <div class="icon trash-icon">
+            <div class="icon trash-icon" onclick="alert('Trash is empty')">
                 <div class="icon-image">🗑️</div>
                 <div class="icon-label">Trash</div>
             </div>

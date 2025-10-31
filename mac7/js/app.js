@@ -151,31 +151,20 @@ function showServiceDetails(service) {
     detailWindow.dataset.serviceUrl = service.url;
 }
 
-// Desktop Icons
+// Desktop Icons - Global handler
+function handleIconClick(action) {
+    console.log('Icon clicked:', action);
+    
+    if (action === 'about') {
+        showWindow('aboutWindow');
+    } else if (action === 'services') {
+        showWindow('servicesWindow');
+    }
+}
+
+// Desktop Icons setup (kept for backward compatibility)
 function setupDesktopIcons() {
-    const desktopIconsContainer = document.querySelector('.desktop-icons');
-
-    const clickHandler = (e) => {
-        const icon = e.target.closest('.icon');
-        if (!icon) return; // Click was not on an icon or its child
-
-        const action = icon.dataset.action;
-        if (!action) {
-            console.log('Clicked an icon with no action (e.g., Trash)');
-            return;
-        }
-        
-        console.log(`Icon ${e.type}:`, action);
-
-        if (action === 'about') {
-            showWindow('aboutWindow');
-        } else if (action === 'services') {
-            showWindow('servicesWindow');
-        }
-    };
-
-    desktopIconsContainer.addEventListener('click', clickHandler);
-    desktopIconsContainer.addEventListener('dblclick', clickHandler);
+    console.log('Desktop icons setup complete');
 }
 
 // Window Management
