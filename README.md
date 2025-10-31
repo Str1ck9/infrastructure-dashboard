@@ -4,7 +4,7 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 
 ## Features
 
-- **10 Unique Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, Windows 3.1, Gopher Protocol, UNIX Mainframe, Arcade (Pac-Man), Military Command 2025, Spaceport, and Submarine Command
+- **11 Unique Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, Windows 3.1, Gopher Protocol, UNIX Mainframe, Arcade (Pac-Man), Military Command 2025, Spaceport, Submarine Command, and Aviation Cockpit
 - **Real-time Status Monitoring**: Async ping checks with visual indicators
 - **Quick Look Modals**: Preview services without leaving the dashboard
 - **Keyboard Navigation**: Full keyboard control across all themes
@@ -105,6 +105,19 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 - Zulu time (UTC) display
 - Keyboard shortcuts: S (sonar ping), P (periscope rotate), R (reload), A (alert mode), / (search), ? (help)
 
+### ✈️ Aviation Cockpit Theme (`/aviation`)
+- Flight deck instrument panel aesthetic
+- Working toggle switches for engines, hydraulics, APU, lights
+- Animated altimeter with needle and digital readout
+- Rotating compass with heading display
+- Airspeed indicator with color-gradient bar
+- Adjustable radio stack (COM1/COM2, NAV1, Transponder)
+- Clickable warning light indicators
+- Flight timer with HH:MM:SS display
+- Real-time service monitoring integrated into cockpit
+- Quick Look modal for service preview
+- Dark cockpit aesthetic with green/cyan HUD displays
+
 ## Installation
 
 1. Clone this repository:
@@ -178,6 +191,9 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 **Submarine:**
 - S: Sonar ping | P: Periscope rotate | R: Reload status | A: Battle stations alert | /: Search | ?: Help | Click tubes for details
 
+**Aviation Cockpit:**
+- Toggle switches to control systems | Radio buttons to adjust frequencies | Click warning lights to toggle alerts | Click services to open | Right-click for Quick Look | ESC: Close modal
+
 ## Project Structure
 
 ```
@@ -216,11 +232,16 @@ dashboard/
 │   │   └── app.js         # Starfield, hologram, service logic
 │   └── css/
 │       └── style.css      # Futuristic glassmorphism styling
-└── submarine/             # Submarine Command theme
+├── submarine/             # Submarine Command theme
+│   ├── js/
+│   │   └── app.js         # Sonar, periscope, torpedo tubes logic
+│   └── css/
+│       └── style.css      # Submarine control styling
+└── aviation/              # Aviation Cockpit theme
     ├── js/
-    │   └── app.js         # Sonar, periscope, torpedo tubes logic
+    │   └── app.js         # Instruments, radio, switches logic
     └── css/
-        └── style.css      # Futuristic glassmorphism styling
+        └── style.css      # Cockpit panel styling
 ```
 
 ## Customization

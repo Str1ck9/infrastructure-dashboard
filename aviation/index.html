@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviation Cockpit - Infrastructure Dashboard</title>
+    <link rel="stylesheet" href="../common/css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script defer src="../common/js/services.js"></script>
+    <script defer src="js/app.js"></script>
+</head>
+<body>
+    <div class="cockpit">
+        <div class="header">
+            ✈ FLIGHT DECK SYSTEMS ✈
+        </div>
+
+        <!-- Left Panel -->
+        <div class="panel">
+            <div class="panel-title">⚡ Systems Control</div>
+            <div class="switches-container">
+                <div class="switch-unit">
+                    <div class="switch-label">Engine 1</div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" onchange="toggleSwitch(this, 'engine1-status')">
+                        <span class="slider"></span>
+                    </label>
+                    <div class="switch-status" id="engine1-status">OFF</div>
+                </div>
+                <div class="switch-unit">
+                    <div class="switch-label">Engine 2</div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" onchange="toggleSwitch(this, 'engine2-status')">
+                        <span class="slider"></span>
+                    </label>
+                    <div class="switch-status" id="engine2-status">OFF</div>
+                </div>
+                <div class="switch-unit">
+                    <div class="switch-label">Hydraulics</div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" onchange="toggleSwitch(this, 'hydraulics-status')">
+                        <span class="slider"></span>
+                    </label>
+                    <div class="switch-status" id="hydraulics-status">OFF</div>
+                </div>
+                <div class="switch-unit">
+                    <div class="switch-label">APU</div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" onchange="toggleSwitch(this, 'apu-status')">
+                        <span class="slider"></span>
+                    </label>
+                    <div class="switch-status" id="apu-status">OFF</div>
+                </div>
+                <div class="switch-unit">
+                    <div class="switch-label">Nav Lights</div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" onchange="toggleSwitch(this, 'nav-status')">
+                        <span class="slider"></span>
+                    </label>
+                    <div class="switch-status" id="nav-status">OFF</div>
+                </div>
+                <div class="switch-unit">
+                    <div class="switch-label">Strobe</div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" onchange="toggleSwitch(this, 'strobe-status')">
+                        <span class="slider"></span>
+                    </label>
+                    <div class="switch-status" id="strobe-status">OFF</div>
+                </div>
+            </div>
+
+            <div class="panel-title" style="margin-top: 20px;">⚠ Warning Indicators</div>
+            <div class="warning-lights">
+                <div class="warning-light" onclick="toggleWarning(this)">
+                    <div class="warning-light-bulb"></div>
+                    <div class="warning-light-label">Oil Press</div>
+                </div>
+                <div class="warning-light" onclick="toggleWarning(this)">
+                    <div class="warning-light-bulb"></div>
+                    <div class="warning-light-label">Fuel Low</div>
+                </div>
+                <div class="warning-light" onclick="toggleWarning(this)">
+                    <div class="warning-light-bulb"></div>
+                    <div class="warning-light-label">Battery</div>
+                </div>
+                <div class="warning-light" onclick="toggleWarning(this)">
+                    <div class="warning-light-bulb"></div>
+                    <div class="warning-light-label">Hydraulic</div>
+                </div>
+                <div class="warning-light" onclick="toggleWarning(this)">
+                    <div class="warning-light-bulb"></div>
+                    <div class="warning-light-label">Temp</div>
+                </div>
+                <div class="warning-light" onclick="toggleWarning(this)">
+                    <div class="warning-light-bulb"></div>
+                    <div class="warning-light-label">Door</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Panel -->
+        <div class="panel">
+            <div class="panel-title">📡 Primary Flight Display</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div>
+                    <div class="altimeter">
+                        <div class="altimeter-face">
+                            <div class="altimeter-needle" id="altitude-needle"></div>
+                            <div class="altimeter-center"></div>
+                        </div>
+                        <div class="altimeter-display" id="altitude-display">0 FT</div>
+                    </div>
+                    <div style="text-align: center; color: #888; font-size: 12px;">ALTIMETER</div>
+                </div>
+                <div>
+                    <div class="compass">
+                        <div class="compass-rose" id="compass-rose">
+                            <div class="compass-direction compass-n">N</div>
+                            <div class="compass-direction compass-e">E</div>
+                            <div class="compass-direction compass-s">S</div>
+                            <div class="compass-direction compass-w">W</div>
+                            <div class="compass-needle"></div>
+                        </div>
+                        <div class="compass-heading" id="compass-heading">000°</div>
+                    </div>
+                    <div style="text-align: center; color: #888; font-size: 12px;">COMPASS</div>
+                </div>
+            </div>
+
+            <div class="speed-indicator" style="margin-top: 20px;">
+                <div class="speed-value" id="speed-value">0</div>
+                <div class="speed-unit">KNOTS</div>
+                <div class="speed-bar">
+                    <div class="speed-bar-fill" id="speed-bar" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="panel">
+            <div class="panel-title">📻 Radio Stack</div>
+            
+            <div class="radio-unit">
+                <div class="radio-label">COM1 - PRIMARY COMMUNICATION</div>
+                <div class="radio-display" id="com1-freq">118.000</div>
+                <div class="radio-controls">
+                    <button class="radio-btn" onclick="adjustFreq('com1', -0.025)">◀</button>
+                    <button class="radio-btn" onclick="adjustFreq('com1', 0.025)">▶</button>
+                </div>
+            </div>
+
+            <div class="radio-unit">
+                <div class="radio-label">COM2 - SECONDARY COMMUNICATION</div>
+                <div class="radio-display" id="com2-freq">121.500</div>
+                <div class="radio-controls">
+                    <button class="radio-btn" onclick="adjustFreq('com2', -0.025)">◀</button>
+                    <button class="radio-btn" onclick="adjustFreq('com2', 0.025)">▶</button>
+                </div>
+            </div>
+
+            <div class="radio-unit">
+                <div class="radio-label">NAV1 - NAVIGATION</div>
+                <div class="radio-display" id="nav1-freq">109.500</div>
+                <div class="radio-controls">
+                    <button class="radio-btn" onclick="adjustFreq('nav1', -0.050)">◀</button>
+                    <button class="radio-btn" onclick="adjustFreq('nav1', 0.050)">▶</button>
+                </div>
+            </div>
+
+            <div class="radio-unit">
+                <div class="radio-label">TRANSPONDER</div>
+                <div class="radio-display" id="transponder">1200</div>
+                <div class="radio-controls">
+                    <button class="radio-btn" onclick="adjustTransponder(-1)">◀</button>
+                    <button class="radio-btn" onclick="adjustTransponder(1)">▶</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Panels -->
+        <div class="panel" style="grid-column: 1;">
+            <div class="panel-title">⏱ Flight Time</div>
+            <div style="text-align: center; margin-top: 30px;">
+                <div style="font-size: 36px; color: #00d4ff; text-shadow: 0 0 10px #00d4ff;" id="flight-time">00:00:00</div>
+            </div>
+        </div>
+
+        <div class="panel" style="grid-column: 2;">
+            <div class="panel-title">🌐 Infrastructure Services</div>
+            <div id="services-grid" class="services-grid"></div>
+        </div>
+
+        <div class="panel" style="grid-column: 3;">
+            <div class="panel-title">📊 System Status</div>
+            <div style="margin-top: 20px; font-size: 11px; line-height: 1.8;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span style="color: #888;">ONLINE:</span>
+                    <span style="color: #00ff41;" id="online-count">0</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span style="color: #888;">OFFLINE:</span>
+                    <span style="color: #ff4444;" id="offline-count">0</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span style="color: #888;">TOTAL:</span>
+                    <span style="color: #00ff41;" id="total-count">0</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span style="color: #888;">LAST CHECK:</span>
+                    <span style="color: #00ff41;" id="last-check">--:--:--</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Look Modal -->
+    <div id="quickLookModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">SERVICE PREVIEW</span>
+                <button class="modal-close" onclick="closeModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <iframe id="modal-iframe" src="" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
