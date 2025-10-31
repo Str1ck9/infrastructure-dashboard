@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI COMMAND CORE - Infrastructure Dashboard</title>
+    <link rel="stylesheet" href="../common/css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script defer src="../common/js/services.js"></script>
+    <script defer src="js/orb.js"></script>
+    <script defer src="js/app.js"></script>
+</head>
+<body>
+    <div class="ai-container">
+        <!-- 3D Data Orb Canvas -->
+        <div id="orb-container"></div>
+        
+        <!-- Header -->
+        <header class="ai-header">
+            <div class="header-left">
+                <div class="ai-logo">
+                    <div class="logo-pulse"></div>
+                    <span>NEXUS AI</span>
+                </div>
+                <div class="system-time" id="systemTime"></div>
+            </div>
+            <div class="header-center">
+                <h1>COMMAND CORE INTERFACE</h1>
+                <div class="security-level" id="securityLevel">
+                    <span class="level-label">SECURITY</span>
+                    <span class="level-value">ALPHA</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="voice-btn" id="voiceBtn" title="Press T or click to activate voice">
+                    <div class="mic-icon"></div>
+                    <span>VOICE</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content Grid -->
+        <div class="content-grid">
+            <!-- Left Panel - Biometric Waveform -->
+            <aside class="left-panel">
+                <div class="panel-header">SYSTEM TELEMETRY</div>
+                <div class="waveform-container">
+                    <canvas id="waveform"></canvas>
+                    <div class="waveform-labels">
+                        <div class="metric">
+                            <span class="metric-label">CPU LOAD</span>
+                            <span class="metric-value" id="cpuLoad">0%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">MEMORY</span>
+                            <span class="metric-value" id="memLoad">0%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">NETWORK</span>
+                            <span class="metric-value" id="netLoad">0%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel-header" style="margin-top: 20px;">VOICE STATUS</div>
+                <div class="voice-status" id="voiceStatus">
+                    <div class="status-indicator inactive"></div>
+                    <span>VOICE INTERFACE STANDBY</span>
+                </div>
+                <div class="voice-transcript" id="voiceTranscript"></div>
+            </aside>
+
+            <!-- Center Panel - Services -->
+            <main class="center-panel">
+                <div class="panel-header">
+                    <span>INFRASTRUCTURE NODES</span>
+                    <div class="node-stats">
+                        <span class="stat-item">
+                            <span class="stat-dot online"></span>
+                            ONLINE: <span id="onlineCount">0</span>
+                        </span>
+                        <span class="stat-item">
+                            <span class="stat-dot offline"></span>
+                            OFFLINE: <span id="offlineCount">0</span>
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="services-container" id="servicesContainer">
+                    <!-- Services will be dynamically loaded -->
+                </div>
+            </main>
+
+            <!-- Right Panel - Alerts & Status -->
+            <aside class="right-panel">
+                <div class="panel-header">SYSTEM ALERTS</div>
+                <div class="alerts-container" id="alertsContainer">
+                    <div class="alert-item info">
+                        <span class="alert-icon">ℹ</span>
+                        <span class="alert-text">AI Core initialized successfully</span>
+                        <span class="alert-time" id="bootTime"></span>
+                    </div>
+                </div>
+
+                <div class="panel-header" style="margin-top: 20px;">NEURAL ACTIVITY</div>
+                <div class="neural-activity">
+                    <div class="activity-bar">
+                        <div class="activity-fill" id="neuralActivity"></div>
+                    </div>
+                    <div class="activity-label">PROCESSING INTENSITY</div>
+                </div>
+
+                <div class="panel-header" style="margin-top: 20px;">KEYBOARD COMMANDS</div>
+                <div class="commands-list">
+                    <div class="command-item">
+                        <kbd>T</kbd>
+                        <span>Activate Voice Interface</span>
+                    </div>
+                    <div class="command-item">
+                        <kbd>A</kbd>
+                        <span>Acknowledge Alert</span>
+                    </div>
+                    <div class="command-item">
+                        <kbd>?</kbd>
+                        <span>System Status</span>
+                    </div>
+                    <div class="command-item">
+                        <kbd>ESC</kbd>
+                        <span>Close Modal</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Status Footer -->
+        <footer class="ai-footer">
+            <div class="footer-item">
+                <span class="footer-label">AI CORE VERSION</span>
+                <span class="footer-value">NEXUS 7.2.1</span>
+            </div>
+            <div class="footer-item">
+                <span class="footer-label">UPTIME</span>
+                <span class="footer-value" id="uptime">00:00:00</span>
+            </div>
+            <div class="footer-item">
+                <span class="footer-label">TOTAL NODES</span>
+                <span class="footer-value" id="totalNodes">0</span>
+            </div>
+            <div class="footer-item">
+                <span class="footer-label">LAST SYNC</span>
+                <span class="footer-value" id="lastSync">--:--:--</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title" id="modalTitle">NODE PREVIEW</span>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <iframe id="modal-iframe" src=""></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- System Status Modal -->
+    <div id="statusModal" class="modal">
+        <div class="modal-content status-modal">
+            <div class="modal-header">
+                <span class="modal-title">SYSTEM STATUS REPORT</span>
+                <button class="modal-close" onclick="closeStatusModal()">×</button>
+            </div>
+            <div class="modal-body status-body">
+                <div class="status-section">
+                    <h3>AI CORE STATUS</h3>
+                    <div class="status-grid">
+                        <div class="status-row">
+                            <span>Neural Network:</span>
+                            <span class="status-value online">OPERATIONAL</span>
+                        </div>
+                        <div class="status-row">
+                            <span>Voice Interface:</span>
+                            <span class="status-value" id="voiceInterfaceStatus">STANDBY</span>
+                        </div>
+                        <div class="status-row">
+                            <span>Data Orb:</span>
+                            <span class="status-value online">ACTIVE</span>
+                        </div>
+                        <div class="status-row">
+                            <span>Security Level:</span>
+                            <span class="status-value" id="currentSecurityLevel">ALPHA</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="status-section">
+                    <h3>INFRASTRUCTURE NODES</h3>
+                    <div id="detailedNodeStatus"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
