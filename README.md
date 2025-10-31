@@ -4,7 +4,7 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 
 ## Features
 
-- **17 Unique Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, Windows 3.1, Gopher Protocol, UNIX Mainframe, Arcade (Pac-Man), Military Command 2025, Spaceport, Submarine Command, Aviation Cockpit, LCARS Interface, Commodore 64, AI Command Core, Data Center Rack View, DOS Shell, and Mac System 7
+- **18 Unique Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, Windows 3.1, Gopher Protocol, UNIX Mainframe, Arcade (Pac-Man), Military Command 2025, Spaceport, Submarine Command, Aviation Cockpit, LCARS Interface, Commodore 64, AI Command Core, Data Center Rack View, DOS Shell, Mac System 7, and NASA Mission Control
 - **Real-time Status Monitoring**: Async ping checks with visual indicators
 - **Quick Look Modals**: Preview services without leaving the dashboard
 - **Keyboard Navigation**: Full keyboard control across all themes
@@ -192,6 +192,24 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 - Startup chime on page load (if browser allows)
 - Keyboard: Cmd/Ctrl+W or ESC to close windows | Double-click services to view details
 
+### 🚀 NASA Mission Control Theme (`/mission`)
+- Authentic Houston Flight Control Center interface (1960s-2020s hybrid)
+- Mission Elapsed Time (MET) clock with DD:HH:MM:SS format counting from page load
+- Real-time animated telemetry graph showing service health over time (20 FPS)
+- Flight Director panel with clickable service list (left panel)
+- Telemetry panel with Canvas-based graphing (center panel)
+- Systems panel with live gauges for Network, Services, and Uptime (right panel)
+- GO/NO-GO flight status indicator based on service health threshold
+- Communications log with timestamped mission events (T+ format)
+- Launch commit modal for service details and launch
+- CRT flicker effect and scanline overlay for authentic console feel
+- Orbitron font for headers, Roboto Mono for data
+- NASA blue (#0B3D91) and red (#FC3D21) official color scheme
+- Floating rocket emoji animation
+- Service status updates with green (online) and red (offline) indicators
+- Keyboard shortcuts: R (manual refresh), ESC (close modal)
+- Auto-updating telemetry, gauges, and mission clock
+
 ## Installation
 
 1. Clone this repository:
@@ -283,6 +301,9 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 **Mac System 7:**
 - Click desktop icons to open windows | Drag window title bars to move | Double-click services to view details | Hover for Balloon Help | Refresh button to check status | Cmd/Ctrl+W or ESC: Close windows | Click outside to deselect
 
+**NASA Mission Control:**
+- Click service in Flight Director panel to view details | LAUNCH button opens service | R key: Manual refresh | ESC: Close modal | Telemetry auto-updates | Watch MET clock count mission time | GO/NO-GO status changes with service health
+
 ## Project Structure
 
 ```
@@ -351,11 +372,16 @@ dashboard/
 │   │   └── app.js         # Boot sequence, command interpreter, service access
 │   └── css/
 │       └── style.css      # IBM PC VGA styling, CRT effects
-└── mac7/                  # Mac System 7 theme
+├── mac7/                  # Mac System 7 theme
+│   ├── js/
+│   │   └── app.js         # Draggable windows, Finder, balloon help
+│   └── css/
+│       └── style.css      # Platinum UI, beveled chrome, Chicago font
+└── mission/               # NASA Mission Control theme
     ├── js/
-    │   └── app.js         # Draggable windows, Finder, balloon help
+    │   └── app.js         # Telemetry canvas, MET clock, comms log
     └── css/
-        └── style.css      # Platinum UI, beveled chrome, Chicago font
+        └── style.css      # NASA colors, CRT effects, flight console
 ```
 
 ## Customization
