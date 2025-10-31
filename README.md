@@ -4,12 +4,13 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 
 ## Features
 
-- **Multiple Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, and Classic
+- **6 Unique Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, UNIX Mainframe, Arcade (Pac-Man), and Military Command 2025
 - **Real-time Status Monitoring**: Async ping checks with visual indicators
 - **Quick Look Modals**: Preview services without leaving the dashboard
-- **Keyboard Navigation**: Full keyboard control (especially in BBS theme)
-- **Modem Speed Simulation**: Authentic BBS experience with configurable connection speeds
+- **Keyboard Navigation**: Full keyboard control across all themes
+- **Interactive Elements**: Modem speed simulation, arcade gameplay, animated radar, telemetry gauges
 - **Responsive Design**: Works on desktop and mobile devices
+- **Retro Aesthetics**: Authentic period-accurate designs from 1960s to 2025
 
 ## Themes
 
@@ -31,6 +32,33 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 - Desktop-style window chrome
 - Toolbar with functional buttons
 - "You've Got Mail!" notifications
+
+### 🖥️ UNIX Mainframe Theme (`/unix`)
+- 1990s terminal monitor aesthetic
+- Green phosphor screen with IBM Plex Mono font
+- Process table view (PID, USER, STATUS, TIME, COMMAND)
+- Real-time system stats (uptime, load averages)
+- Keyboard shortcuts: R (refresh), S (sort), / (search), Q (quit)
+
+### 🕹️ Arcade Theme (`/arcade`)
+- 1980s Pac-Man inspired design
+- Press Start 2P pixel font with neon colors
+- Gameplay mechanics: eat services for points, power pellets for 2X multiplier
+- High score tracking with localStorage
+- Level progression system
+- CRT scanlines and screen effects
+- Controls: Arrow keys, Space (open + eat), V (quick view), R (refresh)
+
+### 🛡️ Military Command 2025 Theme (`/mil2025`)
+- Futuristic military operations bunker
+- Animated radar sweep with contact blips (60 FPS canvas)
+- Live telemetry gauges (CPU, MEM, NET)
+- Scrolling alert tape with system status
+- Red Alert mode (press R) - intensifies animations and switches to red palette
+- DEFCON indicator lamps
+- Keyboard shortcuts: F (fullscreen), R (red alert), / (search), ? (help)
+- UTC/Local clock display
+- Event log with timestamps
 
 ## Installation
 
@@ -67,20 +95,28 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 
 ## Usage
 
-### BBS Theme Keyboard Shortcuts
-- **Arrow Keys**: Navigate menu
-- **Enter**: Quick Look (modal preview)
-- **Space**: Open in new window
-- **/** : Search systems
-- **R**: Refresh/reload page
-- **M**: Modem speed selector
-- **Q**: Quit/disconnect
+### Global Features (All Themes)
+- **Service Status**: Real-time online/offline detection
+- **Quick Look**: Modal previews without leaving dashboard
+- **Search/Filter**: Find services by name
+- **Responsive**: Adapts to different screen sizes
 
-### Star Trek Theme
-- **Click** service cards to open
-- **Quick View** button for modal preview
-- **Red Alert** button toggles alert mode
-- Search bar filters services in real-time
+### Theme-Specific Controls
+
+**BBS Theme:**
+- Arrow Keys: Navigate | Enter: Quick Look | Space: Open | /: Search | R: Refresh | M: Modem speed | Q: Quit
+
+**Star Trek TOS:**
+- Red Alert button toggles alert mode | Search bar filters services | Quick View for modal preview
+
+**UNIX Mainframe:**
+- R: Refresh processes | S: Sort by status | /: Search | Q: Logout | Arrow Keys: Navigate | Enter: Quick view
+
+**Arcade (Pac-Man):**
+- START button begins game | Arrow Keys: Navigate maze | Space: Open + eat | V: Quick view | R: Refresh | Click power pellets for 2X points
+
+**Military 2025:**
+- F: Fullscreen | R: Red Alert | /: Focus search | ?: Help overlay | Esc: Close overlays
 
 ## Project Structure
 
@@ -94,7 +130,17 @@ dashboard/
 │       └── services.js    # Shared service configuration
 ├── tos/                   # Star Trek TOS theme
 ├── bbs/                   # BBS/Terminal theme
-└── aol/                   # AOL 3.0 theme
+├── aol/                   # AOL 3.0 theme
+├── unix/                  # UNIX Mainframe theme
+├── arcade/                # Arcade (Pac-Man) theme
+└── mil2025/               # Military Command 2025 theme
+    ├── js/
+    │   ├── radar.js       # Animated radar canvas
+    │   ├── telemetry.js   # System gauges
+    │   ├── shortcuts.js   # Keyboard controls
+    │   └── app.js         # Main application
+    └── css/
+        └── style.css      # Military styling
 ```
 
 ## Customization
