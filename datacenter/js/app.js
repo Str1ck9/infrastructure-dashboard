@@ -295,7 +295,7 @@ function navigateRack(direction) {
 
 function updateRackPosition() {
     const container = document.getElementById('rackContainer');
-    const offset = -currentRackIndex * 700; // rack width (600) + margin (100)
+    const offset = -currentRackIndex * 850; // rack width (750) + margin (100)
     container.style.transform = `translateX(${offset}px)`;
     document.getElementById('currentRack').textContent = currentRackIndex + 1;
 }
