@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cyber Defense Center - Infrastructure Dashboard</title>
+    <link rel="stylesheet" href="../common/css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <div class="soc-container">
+        <!-- Header -->
+        <div class="soc-header">
+            <div class="header-left">
+                <div class="shield-icon">🛡️</div>
+                <div class="header-title">
+                    <h1>CYBER DEFENSE CENTER</h1>
+                    <p>Security Operations Command</p>
+                </div>
+            </div>
+            <div class="threat-level">
+                <div class="threat-label">THREAT LEVEL</div>
+                <div class="threat-meter" id="threatMeter">
+                    <div class="threat-indicator" id="threatIndicator"></div>
+                </div>
+                <div class="threat-status" id="threatStatus">GUARDED</div>
+            </div>
+            <div class="header-clock">
+                <div class="clock-label">UTC</div>
+                <div class="clock-display" id="utcClock">00:00:00</div>
+            </div>
+        </div>
+
+        <!-- Main Layout -->
+        <div class="soc-layout">
+            <!-- Left Panel: Services Monitor -->
+            <div class="soc-panel services-panel">
+                <div class="panel-header">
+                    <span>🖥️ SERVICES MONITOR</span>
+                    <button class="scan-btn" id="scanBtn">SCAN</button>
+                </div>
+                <div class="panel-content" id="servicesContent">
+                    <!-- Services will be populated here -->
+                </div>
+            </div>
+
+            <!-- Center Panel: World Map -->
+            <div class="soc-panel map-panel">
+                <div class="panel-header">🌍 GLOBAL THREAT MAP</div>
+                <div class="panel-content">
+                    <canvas id="mapCanvas" width="800" height="400"></canvas>
+                    <div class="map-legend">
+                        <div class="legend-item">
+                            <span class="legend-dot inbound"></span>
+                            <span>Inbound Attack</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot outbound"></span>
+                            <span>Outbound Traffic</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot service"></span>
+                            <span>Service Node</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel: Threat Intelligence -->
+            <div class="soc-panel intel-panel">
+                <div class="panel-header">📊 THREAT INTELLIGENCE</div>
+                <div class="panel-content">
+                    <div class="stat-grid">
+                        <div class="stat-box">
+                            <div class="stat-value" id="attackCount">0</div>
+                            <div class="stat-label">Attacks Blocked</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="servicesOnline">0</div>
+                            <div class="stat-label">Services Online</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="responseTime">0ms</div>
+                            <div class="stat-label">Avg Response</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="uptime">100%</div>
+                            <div class="stat-label">System Uptime</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Panel: IDS Log -->
+        <div class="ids-panel">
+            <div class="panel-header">
+                <span>🔒 INTRUSION DETECTION SYSTEM</span>
+                <div class="ids-controls">
+                    <button class="ids-btn" id="clearLog">CLEAR</button>
+                    <button class="ids-btn active" id="autoScroll">AUTO-SCROLL</button>
+                </div>
+            </div>
+            <div class="ids-log" id="idsLog">
+                <div class="log-line">[INIT] IDS system initialized - monitoring active</div>
+            </div>
+        </div>
+
+        <!-- Service Detail Modal -->
+        <div class="modal hidden" id="serviceModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span id="modalTitle">SERVICE DETAILS</span>
+                    <button class="modal-close" onclick="closeModal()">✕</button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- Service details will be populated here -->
+                </div>
+                <div class="modal-footer">
+                    <button class="action-btn deploy" id="deployBtn">DEPLOY</button>
+                    <button class="action-btn isolate" id="isolateBtn">ISOLATE</button>
+                    <button class="action-btn trace" onclick="closeModal()">CLOSE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../common/js/services.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
