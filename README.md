@@ -4,13 +4,13 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 
 ## Features
 
-- **8 Unique Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, Windows 3.1, Gopher Protocol, UNIX Mainframe, Arcade (Pac-Man), and Military Command 2025
+- **9 Unique Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, Windows 3.1, Gopher Protocol, UNIX Mainframe, Arcade (Pac-Man), Military Command 2025, and Spaceport
 - **Real-time Status Monitoring**: Async ping checks with visual indicators
 - **Quick Look Modals**: Preview services without leaving the dashboard
 - **Keyboard Navigation**: Full keyboard control across all themes
-- **Interactive Elements**: Modem speed simulation, arcade gameplay, animated radar, telemetry gauges, Program Manager groups
+- **Interactive Elements**: Modem speed simulation, arcade gameplay, animated radar, telemetry gauges, Program Manager groups, holographic displays, starfield animations
 - **Responsive Design**: Works on desktop and mobile devices
-- **Retro Aesthetics**: Authentic period-accurate designs from 1960s to 2025
+- **Retro & Futuristic Aesthetics**: Authentic period-accurate designs from 1960s to far-future 2425
 
 ## Themes
 
@@ -79,6 +79,19 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 - UTC/Local clock display
 - Event log with timestamps
 
+### 🚀 Spaceport Theme (`/spaceport`)
+- Far-future orbital station control interface (year 2425)
+- Animated starfield background with twinkling stars
+- Holographic network topology visualization with dynamic nodes
+- Glassmorphism UI with cyan/purple neon accents
+- Orbitron & Exo 2 futuristic fonts
+- Docking bay status display (occupied/vacant)
+- Galactic Standard Time (GST) clock
+- Real-time activity log feed
+- System status meters (Power, Bandwidth, Integrity)
+- Glowing service cards with hover animations
+- Keyboard shortcuts: F1 (help), F5 (refresh), / (search), ESC (close)
+
 ## Installation
 
 1. Clone this repository:
@@ -146,6 +159,9 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 **Military 2025:**
 - F: Fullscreen | R: Red Alert | /: Focus search | ?: Help overlay | Esc: Close overlays
 
+**Spaceport:**
+- F1: Help overlay | F5: Refresh services | /: Focus search | ESC: Close modals | Click service cards to view details
+
 ## Project Structure
 
 ```
@@ -171,14 +187,19 @@ dashboard/
 │       └── style.css      # Terminal styling
 ├── unix/                  # UNIX Mainframe theme
 ├── arcade/                # Arcade (Pac-Man) theme
-└── mil2025/               # Military Command 2025 theme
+├── mil2025/               # Military Command 2025 theme
+│   ├── js/
+│   │   ├── radar.js       # Animated radar canvas
+│   │   ├── telemetry.js   # System gauges
+│   │   ├── shortcuts.js   # Keyboard controls
+│   │   └── app.js         # Main application
+│   └── css/
+│       └── style.css      # Military styling
+└── spaceport/             # Spaceport theme
     ├── js/
-    │   ├── radar.js       # Animated radar canvas
-    │   ├── telemetry.js   # System gauges
-    │   ├── shortcuts.js   # Keyboard controls
-    │   └── app.js         # Main application
+    │   └── app.js         # Starfield, hologram, service logic
     └── css/
-        └── style.css      # Military styling
+        └── style.css      # Futuristic glassmorphism styling
 ```
 
 ## Customization

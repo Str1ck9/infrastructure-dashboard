@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Spaceport Terminal • Infrastructure Control</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../common/css/reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script defer src="../common/js/services.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <!-- Starfield Background -->
+  <canvas id="starfield" class="starfield"></canvas>
+
+  <!-- Main Container -->
+  <div class="spaceport">
+    <!-- Header Section -->
+    <header class="header">
+      <div class="header-left">
+        <div class="logo">
+          <div class="logo-hex"></div>
+          <div class="logo-text">
+            <span class="logo-main">SPACEPORT</span>
+            <span class="logo-sub">INFRASTRUCTURE CONTROL</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="header-center">
+        <div class="station-info">
+          <div class="station-name">ORBITAL STATION ATLAS-7</div>
+          <div class="station-status">
+            <span class="status-indicator"></span>
+            <span>OPERATIONAL</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <div class="time-display">
+          <div class="time-label">GALACTIC STANDARD TIME</div>
+          <div class="time-value" id="gstTime">00:00:00</div>
+          <div class="time-date" id="gstDate">2425.11.01</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Left Panel - Docking Bays -->
+      <aside class="left-panel">
+        <div class="panel-header">
+          <div class="panel-icon">◬</div>
+          <div class="panel-title">DOCKING BAYS</div>
+        </div>
+        <div class="docking-bays" id="dockingBays">
+          <!-- Will be populated by JS -->
+        </div>
+        <div class="panel-stats">
+          <div class="stat">
+            <span class="stat-label">OCCUPIED</span>
+            <span class="stat-value" id="occupiedBays">0</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">AVAILABLE</span>
+            <span class="stat-value" id="availableBays">0</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Center Panel - Service Grid -->
+      <section class="center-panel">
+        <div class="search-bar">
+          <input type="text" id="searchInput" class="search-input" placeholder="SEARCH INFRASTRUCTURE SERVICES..." />
+          <div class="search-icon">⌕</div>
+        </div>
+
+        <div class="service-grid" id="serviceGrid">
+          <!-- Services will be populated by JS -->
+        </div>
+
+        <div class="grid-footer">
+          <div class="footer-stat">
+            <span class="footer-label">TOTAL SERVICES</span>
+            <span class="footer-value" id="totalServices">0</span>
+          </div>
+          <div class="footer-stat">
+            <span class="footer-label">ONLINE</span>
+            <span class="footer-value online" id="onlineServices">0</span>
+          </div>
+          <div class="footer-stat">
+            <span class="footer-label">OFFLINE</span>
+            <span class="footer-value offline" id="offlineServices">0</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Panel - System Status -->
+      <aside class="right-panel">
+        <div class="panel-header">
+          <div class="panel-icon">▣</div>
+          <div class="panel-title">SYSTEM STATUS</div>
+        </div>
+        
+        <div class="hologram-display">
+          <canvas id="hologramCanvas" class="hologram-canvas"></canvas>
+          <div class="hologram-label">NETWORK TOPOLOGY</div>
+        </div>
+
+        <div class="status-meters">
+          <div class="meter">
+            <div class="meter-label">POWER</div>
+            <div class="meter-bar">
+              <div class="meter-fill" style="width: 87%"></div>
+            </div>
+            <div class="meter-value">87%</div>
+          </div>
+          <div class="meter">
+            <div class="meter-label">BANDWIDTH</div>
+            <div class="meter-bar">
+              <div class="meter-fill" style="width: 64%"></div>
+            </div>
+            <div class="meter-value">64%</div>
+          </div>
+          <div class="meter">
+            <div class="meter-label">INTEGRITY</div>
+            <div class="meter-bar">
+              <div class="meter-fill" style="width: 95%"></div>
+            </div>
+            <div class="meter-value">95%</div>
+          </div>
+        </div>
+
+        <div class="alert-feed">
+          <div class="alert-header">ACTIVITY LOG</div>
+          <div class="alert-list" id="alertList">
+            <div class="alert-item">
+              <span class="alert-time">00:31:45</span>
+              <span class="alert-text">System initialized</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Bottom Status Bar -->
+    <footer class="status-bar">
+      <div class="status-left">
+        <span class="status-icon">●</span>
+        <span id="statusText">READY</span>
+      </div>
+      <div class="status-center">
+        <kbd>F1</kbd> Help
+        <kbd>F5</kbd> Refresh
+        <kbd>/</kbd> Search
+        <kbd>ESC</kbd> Close
+      </div>
+      <div class="status-right">
+        <span id="connectionStatus">UPLINK: ACTIVE</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Service Detail Modal -->
+  <div class="modal hidden" id="serviceModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title" id="modalTitle">SERVICE DETAILS</div>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Content populated by JS -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="openServiceBtn">LAUNCH SERVICE</button>
+        <button class="btn btn-secondary" onclick="closeModal()">CANCEL</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Help Overlay -->
+  <div class="help-overlay hidden" id="helpOverlay">
+    <div class="help-content">
+      <div class="help-header">SPACEPORT CONTROL INTERFACE</div>
+      <div class="help-section">
+        <h3>NAVIGATION</h3>
+        <ul>
+          <li><kbd>Arrow Keys</kbd> Navigate service grid</li>
+          <li><kbd>Enter</kbd> Open selected service</li>
+          <li><kbd>Space</kbd> Quick view service details</li>
+        </ul>
+      </div>
+      <div class="help-section">
+        <h3>COMMANDS</h3>
+        <ul>
+          <li><kbd>F1</kbd> Display this help screen</li>
+          <li><kbd>F5</kbd> Refresh service status</li>
+          <li><kbd>/</kbd> Focus search field</li>
+          <li><kbd>ESC</kbd> Close modals/overlays</li>
+        </ul>
+      </div>
+      <div class="help-section">
+        <h3>STATUS INDICATORS</h3>
+        <ul>
+          <li><span class="indicator online"></span> Service online and operational</li>
+          <li><span class="indicator offline"></span> Service offline or unreachable</li>
+          <li><span class="indicator docked"></span> Docking bay occupied</li>
+        </ul>
+      </div>
+      <button class="btn btn-primary" onclick="closeHelp()">UNDERSTOOD</button>
+    </div>
+  </div>
+</body>
+</html>
