@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Macintosh System 7 - Infrastructure Dashboard</title>
+    <link rel="stylesheet" href="../common/css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <!-- Desktop Background -->
+    <div class="desktop">
+        <!-- Menu Bar -->
+        <div class="menu-bar">
+            <div class="apple-menu">
+                <span class="apple-icon">🍎</span>
+            </div>
+            <div class="menu-items">
+                <span class="menu-item">File</span>
+                <span class="menu-item">Edit</span>
+                <span class="menu-item">View</span>
+                <span class="menu-item">Special</span>
+            </div>
+            <div class="menu-clock" id="menuClock">12:00 PM</div>
+        </div>
+
+        <!-- Desktop Icons -->
+        <div class="desktop-icons">
+            <div class="icon" data-action="about">
+                <div class="icon-image">📋</div>
+                <div class="icon-label">About Dashboard</div>
+            </div>
+            <div class="icon" data-action="services">
+                <div class="icon-image">💾</div>
+                <div class="icon-label">Services Folder</div>
+            </div>
+            <div class="icon trash-icon">
+                <div class="icon-image">🗑️</div>
+                <div class="icon-label">Trash</div>
+            </div>
+        </div>
+
+        <!-- About Dialog -->
+        <div class="window about-window hidden" id="aboutWindow">
+            <div class="title-bar">
+                <div class="title-bar-text">About This Dashboard</div>
+                <button class="close-button" data-window="aboutWindow">✕</button>
+            </div>
+            <div class="window-content">
+                <div class="about-content">
+                    <div class="about-icon">🖥️</div>
+                    <h2>Infrastructure Dashboard</h2>
+                    <p>System 7.5.3</p>
+                    <p>© 2024 Home Lab Systems</p>
+                    <p class="about-memory">Memory: <span id="serviceCount">0</span> Services</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Window -->
+        <div class="window services-window hidden" id="servicesWindow">
+            <div class="title-bar">
+                <div class="title-bar-text">Services Folder</div>
+                <button class="close-button" data-window="servicesWindow">✕</button>
+            </div>
+            <div class="window-toolbar">
+                <button class="toolbar-button" id="refreshBtn">Refresh</button>
+                <button class="toolbar-button" id="viewBtn">View: Icons</button>
+            </div>
+            <div class="window-content services-content" id="servicesContent">
+                <!-- Services will be populated here -->
+            </div>
+        </div>
+
+        <!-- Service Detail Window -->
+        <div class="window detail-window hidden" id="detailWindow">
+            <div class="title-bar">
+                <div class="title-bar-text" id="detailTitle">Service Info</div>
+                <button class="close-button" data-window="detailWindow">✕</button>
+            </div>
+            <div class="window-content detail-content">
+                <div class="detail-header">
+                    <div class="detail-icon">🌐</div>
+                    <div class="detail-info">
+                        <h3 id="detailName"></h3>
+                        <p id="detailCategory"></p>
+                    </div>
+                </div>
+                <div class="detail-separator"></div>
+                <div class="detail-fields">
+                    <div class="detail-field">
+                        <span class="field-label">Kind:</span>
+                        <span class="field-value">Web Service</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="field-label">URL:</span>
+                        <span class="field-value" id="detailUrl"></span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="field-label">Status:</span>
+                        <span class="field-value" id="detailStatus"></span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="field-label">Description:</span>
+                        <span class="field-value" id="detailDesc"></span>
+                    </div>
+                </div>
+                <div class="detail-buttons">
+                    <button class="mac-button" id="openServiceBtn">Open</button>
+                    <button class="mac-button" id="closeDetailBtn">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Balloon Help -->
+        <div class="balloon-help hidden" id="balloonHelp">
+            <div class="balloon-arrow"></div>
+            <div class="balloon-text"></div>
+        </div>
+    </div>
+
+    <!-- Startup Chime Audio -->
+    <audio id="startupChime" preload="auto">
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFgYJ" type="audio/wav">
+    </audio>
+
+    <script src="../common/js/services.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

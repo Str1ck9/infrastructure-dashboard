@@ -4,7 +4,7 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 
 ## Features
 
-- **16 Unique Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, Windows 3.1, Gopher Protocol, UNIX Mainframe, Arcade (Pac-Man), Military Command 2025, Spaceport, Submarine Command, Aviation Cockpit, LCARS Interface, Commodore 64, AI Command Core, Data Center Rack View, and DOS Shell
+- **17 Unique Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, Windows 3.1, Gopher Protocol, UNIX Mainframe, Arcade (Pac-Man), Military Command 2025, Spaceport, Submarine Command, Aviation Cockpit, LCARS Interface, Commodore 64, AI Command Core, Data Center Rack View, DOS Shell, and Mac System 7
 - **Real-time Status Monitoring**: Async ping checks with visual indicators
 - **Quick Look Modals**: Preview services without leaving the dashboard
 - **Keyboard Navigation**: Full keyboard control across all themes
@@ -174,6 +174,24 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 - Real-time service status checking
 - Commands: DIR (list), RUN <num> (open), PING (check status), CLS (clear), VER (version), HELP, EXIT
 
+### 💾 Mac System 7 Theme (`/mac7`)
+- Authentic 1992 Macintosh Platinum UI interface
+- Classic gray window chrome with beveled borders
+- Draggable windows with title bars
+- Chicago font (with web font fallback)
+- Desktop icons: About Dashboard, Services Folder, Trash
+- Menu bar with Apple menu, File, Edit, View, Special, and live clock
+- Finder-style Services Folder window with icon grid view
+- Service detail dialog with Get Info panel layout
+- Balloon Help tooltips (800ms delay, yellow with arrow)
+- Real-time service status indicators (green checkmark/red X badges)
+- Refresh and View toolbar buttons
+- Close buttons on windows with keyboard shortcuts
+- Outset/inset button styling on press
+- Classic Mac scrollbars with beveled appearance
+- Startup chime on page load (if browser allows)
+- Keyboard: Cmd/Ctrl+W or ESC to close windows | Double-click services to view details
+
 ## Installation
 
 1. Clone this repository:
@@ -262,6 +280,9 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 **DOS Shell:**
 - Type commands and press ENTER | DIR: List services | RUN <number>: Open service | PING: Check all service status | CLS: Clear screen | HELP: Show commands | EXIT: Return to menu | Up/Down arrows: Command history
 
+**Mac System 7:**
+- Click desktop icons to open windows | Drag window title bars to move | Double-click services to view details | Hover for Balloon Help | Refresh button to check status | Cmd/Ctrl+W or ESC: Close windows | Click outside to deselect
+
 ## Project Structure
 
 ```
@@ -325,11 +346,16 @@ dashboard/
 │   │   └── app.js         # Rack generation, LEDs, voltage graph, sound
 │   └── css/
 │       └── style.css      # Photorealistic rack styling, LED animations
-└── dos/                   # DOS Shell theme
+├── dos/                   # DOS Shell theme
+│   ├── js/
+│   │   └── app.js         # Boot sequence, command interpreter, service access
+│   └── css/
+│       └── style.css      # IBM PC VGA styling, CRT effects
+└── mac7/                  # Mac System 7 theme
     ├── js/
-    │   └── app.js         # Boot sequence, command interpreter, service access
+    │   └── app.js         # Draggable windows, Finder, balloon help
     └── css/
-        └── style.css      # IBM PC VGA styling, CRT effects
+        └── style.css      # Platinum UI, beveled chrome, Chicago font
 ```
 
 ## Customization
