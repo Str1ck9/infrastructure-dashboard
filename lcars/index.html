@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LCARS Interface - Infrastructure Dashboard</title>
+    <link rel="stylesheet" href="../common/css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script defer src="../common/js/services.js"></script>
+    <script defer src="js/app.js"></script>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">RED ALERT</button>
+    
+    <div class="container">
+        <div class="lcars-bar"></div>
+        <header>
+            <div class="lcars-elbow"></div>
+            <div class="header-center">
+                <h1>LCARS 47 <button class="refresh-button" onclick="checkAllServices()" title="Refresh Statuses">⟳</button></h1>
+                <p class="status"><span class="status-indicator"></span>USS ENTERPRISE • NCC-1701-D</p>
+            </div>
+            <div class="lcars-elbow-right"></div>
+        </header>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" onkeyup="searchServices()" placeholder="COMPUTER SEARCH">
+        </div>
+
+        <div class="dashboard-grid" id="servicesGrid">
+            <!-- Services will be dynamically generated here -->
+            
+            <!-- Bridge Console -->
+            <div class="bridge-console">
+                <div class="console-header">⬡ TACTICAL SYSTEMS DISPLAY ⬡</div>
+                <div class="console-output">
+                    <div class="system-panel">
+                        <div class="panel-title">POWER DISTRIBUTION</div>
+                        <div class="power-label">WARP ENGINES</div>
+                        <div class="power-bar"><div class="power-fill" id="warpPower" style="width: 0%"></div></div>
+                        <div class="power-label">SHIELDS</div>
+                        <div class="power-bar"><div class="power-fill" id="shieldPower" style="width: 0%"></div></div>
+                        <div class="power-label">WEAPONS</div>
+                        <div class="power-bar"><div class="power-fill" id="weaponsPower" style="width: 0%"></div></div>
+                        <div class="power-label">LIFE SUPPORT</div>
+                        <div class="power-bar"><div class="power-fill" id="lifePower" style="width: 0%"></div></div>
+                    </div>
+                    <div class="system-panel">
+                        <div class="panel-title">SYSTEM STATUS</div>
+                        <div class="status-grid" id="statusGrid">
+                            <div class="status-item">SENSORS: ACTIVE</div>
+                            <div class="status-item">COMMS: ONLINE</div>
+                            <div class="status-item">NAVIGATION: OK</div>
+                            <div class="status-item warning">AUX POWER: 87%</div>
+                            <div class="status-item">TRANSPORTERS: RDY</div>
+                            <div class="status-item">DEFLECTOR: ACTIVE</div>
+                            <div class="status-item">IMPULSE: ONLINE</div>
+                            <div class="status-item">COMPUTER: OPTIMAL</div>
+                        </div>
+                        <div class="warp-core">
+                            <div class="warp-segment"></div>
+                            <div class="warp-segment"></div>
+                            <div class="warp-segment"></div>
+                            <div class="warp-segment"></div>
+                            <div class="warp-segment"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lcars-bar-bottom"></div>
+        <footer class="footer">
+            <p>STARFLEET COMMAND • STARDATE: <span id="lastUpdate"></span></p>
+        </footer>
+    </div>
+
+    <div id="quickLookModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <iframe id="modal-iframe" src="" frameborder="0"></iframe>
+        </div>
+    </div>
+</body>
+</html>
