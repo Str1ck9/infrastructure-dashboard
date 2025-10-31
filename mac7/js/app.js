@@ -64,24 +64,50 @@ function initServices() {
 
 function renderServices() {
     const container = document.getElementById('servicesContent');
+    if (!container) {
+        console.error('servicesContent container not found');
+        return;
+    }
+    
+    console.log('Rendering', services.length, 'services');
     container.innerHTML = '';
+    
+    if (services.length === 0) {
+        container.innerHTML = '<div style="padding: 20px; text-align: center; color: #999;">No services found</div>';
+        return;
+    }
     
     services.forEach((service, index) => {
         const icon = document.createElement('div');
         icon.className = 'service-icon';
         icon.dataset.index = index;
+        icon.style.cursor = 'pointer';
         
         const statusClass = service.online === null ? '' : 
                            service.online ? 'online' : 'offline';
-        icon.classList.add(statusClass);
+        if (statusClass) icon.classList.add(statusClass);
         
+        // Create a clickable icon that opens the service
         icon.innerHTML = `
             <div class="service-icon-image">🌐</div>
             <div class="service-icon-label">${service.name}</div>
         `;
         
-        icon.addEventListener('click', () => selectService(index));
-        icon.addEventListener('dblclick', () => openService(index));
+        // Make it clickable to select or open
+        icon.addEventListener('click', (e) => {
+            e.stopPropagation();
+            selectService(index);
+        });
+        
+        icon.addEventListener('dblclick', (e) => {
+            e.stopPropagation();
+            window.open(service.url, '_blank');
+        });
+        
+        icon.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            showServiceDetails(service);
+        });
         
         container.appendChild(icon);
     });
