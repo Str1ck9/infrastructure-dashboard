@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neural Network Core - Infrastructure Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="neural-interface">
+    <!-- Header Section -->
+    <header class="neural-header">
+      <div class="logo-section">
+        <div class="neural-logo">◈</div>
+        <div class="system-title">
+          <h1>NEURAL CORE</h1>
+          <p class="subtitle">BLADE RUNNER INTELLIGENCE NETWORK</p>
+        </div>
+      </div>
+      <div class="system-status">
+        <div class="consciousness-meter">
+          <span class="status-label">CONSCIOUSNESS</span>
+          <div class="consciousness-level">
+            <div class="level-bar" id="consciousnessBar"></div>
+          </div>
+          <span class="status-value" id="consciousnessValue">87%</span>
+        </div>
+      </div>
+      <div class="uptime-display">
+        <span class="uptime-label">NEURAL UPTIME</span>
+        <div class="uptime-value" id="uptimeDisplay">00:00:00</div>
+      </div>
+    </header>
+
+    <!-- Main Neural Canvas -->
+    <div class="neural-container">
+      <canvas id="neuralCanvas"></canvas>
+      <div class="neural-overlay">
+        <!-- Left Panel: Service Status -->
+        <div class="neural-panel left-panel">
+          <div class="panel-title">◈ COGNITIVE NODES</div>
+          <div class="panel-body" id="serviceNodes">
+            <!-- Services will be rendered here -->
+          </div>
+        </div>
+
+        <!-- Right Panel: Thought Stream -->
+        <div class="neural-panel right-panel">
+          <div class="panel-title">◈ THOUGHT STREAM</div>
+          <div class="panel-body thought-stream" id="thoughtStream">
+            <!-- Thoughts will be rendered here -->
+          </div>
+        </div>
+
+        <!-- Bottom Panel: Neural Activity -->
+        <div class="neural-panel bottom-panel">
+          <div class="panel-title">◈ SYNAPTIC ACTIVITY</div>
+          <div class="panel-body activity-log" id="activityLog">
+            <!-- Activity will be rendered here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Service Detail Modal -->
+    <div id="serviceModal" class="modal hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span id="modalTitle">NODE DETAILS</span>
+          <button class="close-btn" onclick="closeModal()">✖</button>
+        </div>
+        <div class="modal-body">
+          <div class="node-info">
+            <div class="info-row">
+              <span class="info-label">NODE ID:</span>
+              <span class="info-value" id="modalNodeId">—</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">STATUS:</span>
+              <span class="info-value" id="modalStatus">—</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">SYNAPTIC LOAD:</span>
+              <span class="info-value" id="modalLoad">—</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">CONNECTIONS:</span>
+              <span class="info-value" id="modalConnections">—</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">LAST PULSE:</span>
+              <span class="info-value" id="modalLastPulse">—</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" onclick="stimulateNode()">STIMULATE</button>
+          <button class="btn btn-danger" onclick="isolateNode()">ISOLATE</button>
+          <button class="btn btn-secondary" onclick="closeModal()">CLOSE</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Keyboard Shortcuts Hint -->
+    <div class="shortcuts-hint">
+      <span>Press <kbd>P</kbd> to toggle pulse | <kbd>S</kbd> to stimulate all nodes | <kbd>ESC</kbd> to close modal</span>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
