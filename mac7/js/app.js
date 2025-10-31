@@ -153,31 +153,29 @@ function showServiceDetails(service) {
 
 // Desktop Icons
 function setupDesktopIcons() {
-    document.querySelectorAll('.desktop-icons .icon').forEach(icon => {
-        // Single-click handler
-        icon.addEventListener('click', function(e) {
-            const action = icon.dataset.action;
-            console.log('Icon clicked:', action);
-            
-            if (action === 'about') {
-                showWindow('aboutWindow');
-            } else if (action === 'services') {
-                showWindow('servicesWindow');
-            }
-        });
+    const desktopIconsContainer = document.querySelector('.desktop-icons');
+
+    const clickHandler = (e) => {
+        const icon = e.target.closest('.icon');
+        if (!icon) return; // Click was not on an icon or its child
+
+        const action = icon.dataset.action;
+        if (!action) {
+            console.log('Clicked an icon with no action (e.g., Trash)');
+            return;
+        }
         
-        // Double-click handler for Mac-like behavior
-        icon.addEventListener('dblclick', function(e) {
-            const action = icon.dataset.action;
-            console.log('Icon double-clicked:', action);
-            
-            if (action === 'about') {
-                showWindow('aboutWindow');
-            } else if (action === 'services') {
-                showWindow('servicesWindow');
-            }
-        });
-    });
+        console.log(`Icon ${e.type}:`, action);
+
+        if (action === 'about') {
+            showWindow('aboutWindow');
+        } else if (action === 'services') {
+            showWindow('servicesWindow');
+        }
+    };
+
+    desktopIconsContainer.addEventListener('click', clickHandler);
+    desktopIconsContainer.addEventListener('dblclick', clickHandler);
 }
 
 // Window Management
