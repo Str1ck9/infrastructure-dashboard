@@ -4,7 +4,7 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 
 ## Features
 
-- **19 Unique Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, Windows 3.1, Gopher Protocol, UNIX Mainframe, Arcade (Pac-Man), Military Command 2025, Spaceport, Submarine Command, Aviation Cockpit, LCARS Interface, Commodore 64, AI Command Core, Data Center Rack View, DOS Shell, Mac System 7, NASA Mission Control, and Cyber Defense Center
+- **20 Unique Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, Windows 3.1, Gopher Protocol, UNIX Mainframe, Arcade (Pac-Man), Military Command 2025, Spaceport, Submarine Command, Aviation Cockpit, LCARS Interface, Commodore 64, AI Command Core, Data Center Rack View, DOS Shell, Mac System 7, NASA Mission Control, Cyber Defense Center, and Neural Network Core
 - **Real-time Status Monitoring**: Async ping checks with visual indicators
 - **Quick Look Modals**: Preview services without leaving the dashboard
 - **Keyboard Navigation**: Full keyboard control across all themes
@@ -210,6 +210,24 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 - Keyboard shortcuts: R (manual refresh), ESC (close modal)
 - Auto-updating telemetry, gauges, and mission clock
 
+### 🧠 Neural Network Core Theme (`/neural`)
+- Blade Runner-inspired AI consciousness interface
+- Animated neural synapse network using Canvas API with dynamic node connections
+- Floating neural nodes with glow effects and pulsing animations
+- Consciousness meter displaying AI awareness level (75-95%)
+- Neural uptime counter (HH:MM:SS format)
+- Cognitive nodes panel showing service status (ACTIVE/PROCESSING/IDLE)
+- Thought stream with AI processing messages auto-updating every 4 seconds
+- Synaptic activity log with real-time neural events
+- Node detail modal with stimulate/isolate controls
+- Stimulate function increases consciousness and triggers visual pulse effects
+- Isolate function disables cognitive nodes
+- Synthwave color scheme: magenta (#ff00ff) and cyan (#00ffff)
+- Orbitron font for headers, Rajdhani for body text
+- Keyboard shortcuts: P (toggle pulse animation), S (stimulate all nodes), ESC (close modal)
+- Canvas animation running at 60 FPS with dynamic connection rendering
+- Radial gradient glow effects on nodes and connections
+
 ### 🛡️ Cyber Defense Center Theme (`/cyberdefense`)
 - USCYBERCOM / SOC (Security Operations Center) war room interface
 - Animated world map with simplified continent outlines (Canvas-based)
@@ -328,6 +346,9 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 **Cyber Defense Center:**
 - Click services in monitor to view details | Watch animated attack arcs on world map | S key: Manual security scan | DEPLOY button opens service | ISOLATE: Alert notification | CLEAR: Reset IDS log | AUTO-SCROLL: Toggle log scrolling | Threat level updates automatically | ESC: Close modal
 
+**Neural Network Core:**
+- Click cognitive nodes to view details | Watch animated neural synapses and connections | P key: Toggle pulse animation | S key: Stimulate all nodes | STIMULATE button boosts consciousness | ISOLATE: Disable node | Thought stream auto-updates | ESC: Close modal | Consciousness meter fluctuates with neural activity
+
 ## Project Structure
 
 ```
@@ -406,11 +427,16 @@ dashboard/
 │   │   └── app.js         # Telemetry canvas, MET clock, comms log
 │   └── css/
 │       └── style.css      # NASA colors, CRT effects, flight console
-└── cyberdefense/          # Cyber Defense Center theme
+├── cyberdefense/          # Cyber Defense Center theme
+│   ├── js/
+│   │   └── app.js         # World map canvas, attack arcs, IDS log
+│   └── css/
+│       └── style.css      # Cyber color scheme, SOC war room styling
+└── neural/                # Neural Network Core theme
     ├── js/
-    │   └── app.js         # World map canvas, attack arcs, IDS log
+    │   └── app.js         # Neural synapse canvas, consciousness meter, thought stream
     └── css/
-        └── style.css      # Cyber color scheme, SOC war room styling
+        └── style.css      # Synthwave magenta/cyan, Blade Runner aesthetics
 ```
 
 ## Customization
