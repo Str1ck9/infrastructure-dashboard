@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chronos Console • Temporal Navigation Interface</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&family=Special+Elite&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="../common/js/services.js"></script>
+</head>
+<body>
+  <!-- Boot Sequence Overlay -->
+  <div id="bootSequence" class="boot-sequence">
+    <div class="boot-content">
+      <div class="brass-frame">
+        <div class="boot-text">
+          <div class="boot-line">⚙ TEMPORAL CALIBRATION IN PROGRESS ⚙</div>
+          <div class="boot-line">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+          <div class="boot-line">Synchronizing Chronometric Oscillators...</div>
+          <div class="boot-line">Aligning Temporal Flux Capacitors...</div>
+          <div class="boot-line">Engaging Aetheric Resonance Chamber...</div>
+          <div class="boot-line">Stabilizing Paradox Dampeners...</div>
+          <div class="boot-line">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+          <div class="boot-line boot-ready">✓ SYSTEM READY • TEMPORAL COORDINATES LOCKED</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chronos-console">
+    <!-- Time Vortex Background Canvas -->
+    <canvas id="vortexCanvas" class="vortex-canvas"></canvas>
+
+    <!-- Main Console Frame -->
+    <div class="console-frame">
+      <!-- Top Header -->
+      <header class="temporal-header">
+        <div class="header-left">
+          <div class="console-logo">⚙</div>
+        </div>
+
+        <div class="header-center">
+          <h1 class="console-title">CHRONOS CONSOLE</h1>
+          <p class="console-subtitle">Time Traveler's Dashboard</p>
+        </div>
+
+        <div class="header-right">
+          <div class="time-display">
+            <div class="time-label">UNIVERSAL TIME</div>
+            <div class="time-value" id="utcTime">00:00:00</div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Content Grid -->
+      <main class="console-grid">
+        <!-- Temporal Anchors (Services) -->
+        <section class="temporal-anchors">
+          <div class="panel-frame">
+            <div class="panel-title">
+              <span class="brass-rivet">◆</span>
+              TEMPORAL ANCHOR STATIONS
+              <span class="brass-rivet">◆</span>
+            </div>
+            <div class="anchor-grid" id="anchorGrid">
+              <!-- Service cards will be generated here -->
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Bottom: Timeline & Controls -->
+      <footer class="temporal-footer">
+        <div class="timeline-container">
+          <div class="timeline-label">TEMPORAL COORDINATES</div>
+          <div class="timeline-rail">
+            <input type="range" id="timelineSlider" class="timeline-slider" min="0" max="4" value="2" step="1">
+            <div class="timeline-markers">
+              <div class="timeline-marker" data-era="0">1885<br>Victorian</div>
+              <div class="timeline-marker" data-era="1">1947<br>Atomic</div>
+              <div class="timeline-marker active" data-era="2">1999<br>Digital</div>
+              <div class="timeline-marker" data-era="3">2077<br>Quantum</div>
+              <div class="timeline-marker" data-era="4">∞<br>Chronos</div>
+            </div>
+          </div>
+          <div class="timeline-readout">
+            <div class="coord-display">
+              <span class="coord-label">ERA:</span>
+              <span class="coord-value" id="currentEra">1999 - Digital Age</span>
+            </div>
+            <div class="coord-display">
+              <span class="coord-label">PARADOX STATUS:</span>
+              <span class="coord-value status-stable">STABLE</span>
+            </div>
+            <div class="coord-display">
+              <span class="coord-label">ΔT DRIFT:</span>
+              <span class="coord-value" id="timeDrift">+0.003s</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="controls-panel">
+          <button class="brass-button" onclick="timeJump()" title="Random Time Jump (T)">
+            <span class="button-icon">⚡</span>
+            TIME JUMP
+          </button>
+          <button class="brass-button" onclick="toggleConsole()" title="Open Console (/)">
+            <span class="button-icon">⌘</span>
+            CONSOLE
+          </button>
+          <button class="brass-button" onclick="toggleHelp()" title="Help (?)">
+            <span class="button-icon">?</span>
+            HELP
+          </button>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Hidden Console Overlay -->
+    <div id="chronosConsole" class="chronos-console-overlay hidden">
+      <div class="console-window">
+        <div class="console-header">
+          <span>CHRONOS TERMINAL</span>
+          <button onclick="toggleConsole()">×</button>
+        </div>
+        <div class="console-output" id="consoleOutput">
+          <div class="console-line">Chronos Console v7.42 - Type 'help' for commands</div>
+          <div class="console-line">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+        </div>
+        <div class="console-input-line">
+          <span class="console-prompt">chronos>_</span>
+          <input type="text" id="consoleInput" class="console-input" placeholder="">
+        </div>
+      </div>
+    </div>
+
+    <!-- Help Modal -->
+    <div id="helpModal" class="help-modal hidden">
+      <div class="modal-content brass-frame">
+        <div class="modal-header">
+          <h2>TEMPORAL CONSOLE OPERATIONS MANUAL</h2>
+          <button onclick="toggleHelp()">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="help-section">
+            <h3>⌨ Keyboard Controls</h3>
+            <ul>
+              <li><kbd>/</kbd> - Open Console Terminal</li>
+              <li><kbd>T</kbd> - Random Time Jump (changes era)</li>
+              <li><kbd>H</kbd> - Show/Hide Logbook</li>
+              <li><kbd>?</kbd> - This Help Screen</li>
+              <li><kbd>ESC</kbd> - Close Overlays</li>
+            </ul>
+          </div>
+          <div class="help-section">
+            <h3>⚙ Console Commands</h3>
+            <ul>
+              <li><code>help</code> - Display commands</li>
+              <li><code>jump [year]</code> - Jump to specific era</li>
+              <li><code>status</code> - System status report</li>
+              <li><code>reboot</code> - Restart interface</li>
+              <li><code>clear</code> - Clear console</li>
+            </ul>
+          </div>
+          <div class="help-section">
+            <h3>🔗 Temporal Anchors</h3>
+            <p>Click any anchor station to open its temporal portal to the service interface.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Keyboard Shortcuts Hint -->
+    <div class="shortcuts-hint">
+      <kbd>/</kbd> Console | <kbd>T</kbd> Time Jump | <kbd>H</kbd> Logbook | <kbd>?</kbd> Help
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

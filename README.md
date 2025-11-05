@@ -4,7 +4,7 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 
 ## Features
 
-- **21 Unique Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, Windows 3.1, Gopher Protocol, UNIX Mainframe, Arcade (Pac-Man), Military Command 2025, Spaceport, Submarine Command, Aviation Cockpit, LCARS Interface, Commodore 64, AI Command Core, Data Center Rack View, DOS Shell, Mac System 7, NASA Mission Control, Cyber Defense Center, Neural Network Core, and Quantum Control Room
+- **23 Unique Themes**: Star Trek TOS, BBS/Terminal, AOL 3.0, Windows 3.1, Gopher Protocol, UNIX Mainframe, Arcade (Pac-Man), Military Command 2025, Spaceport, Submarine Command, Aviation Cockpit, LCARS Interface, Commodore 64, AI Command Core, Data Center Rack View, DOS Shell, Mac System 7, NASA Mission Control, Cyber Defense Center, Neural Network Core, Quantum Control Room, BioLab Containment Facility, and Chronos Console
 - **Real-time Status Monitoring**: Async ping checks with visual indicators
 - **Quick Look Modals**: Preview services without leaving the dashboard
 - **Keyboard Navigation**: Full keyboard control across all themes
@@ -13,6 +13,178 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 - **Retro & Futuristic Aesthetics**: Authentic period-accurate designs from 1960s to far-future 2425
 
 ## Themes
+
+### 📸 Screenshots
+
+Click to expand and view screenshots of each theme:
+
+<details>
+<summary><strong>Star Trek TOS</strong></summary>
+
+![Star Trek TOS](screenshots/tos.png)
+
+</details>
+
+<details>
+<summary><strong>BBS Terminal</strong></summary>
+
+![BBS Terminal](screenshots/bbs.png)
+
+</details>
+
+<details>
+<summary><strong>AOL Classic</strong></summary>
+
+![AOL Classic](screenshots/aol.png)
+
+</details>
+
+<details>
+<summary><strong>CompuServe 1995</strong></summary>
+
+![CompuServe 1995](screenshots/compuserve.png)
+
+</details>
+
+<details>
+<summary><strong>UNIX Mainframe</strong></summary>
+
+![UNIX Mainframe](screenshots/unix.png)
+
+</details>
+
+<details>
+<summary><strong>Arcade (Pac-Man)</strong></summary>
+
+![Arcade (Pac-Man)](screenshots/arcade.png)
+
+</details>
+
+<details>
+<summary><strong>Military Command 2025</strong></summary>
+
+![Military Command 2025](screenshots/mil2025.png)
+
+</details>
+
+<details>
+<summary><strong>Gopher Protocol</strong></summary>
+
+![Gopher Protocol](screenshots/gopher.png)
+
+</details>
+
+<details>
+<summary><strong>Windows 3.1</strong></summary>
+
+![Windows 3.1](screenshots/win31.png)
+
+</details>
+
+<details>
+<summary><strong>Spaceport</strong></summary>
+
+![Spaceport](screenshots/spaceport.png)
+
+</details>
+
+<details>
+<summary><strong>Submarine Command</strong></summary>
+
+![Submarine Command](screenshots/submarine.png)
+
+</details>
+
+<details>
+<summary><strong>Aviation Cockpit</strong></summary>
+
+![Aviation Cockpit](screenshots/aviation.png)
+
+</details>
+
+<details>
+<summary><strong>LCARS Interface</strong></summary>
+
+![LCARS Interface](screenshots/lcars.png)
+
+</details>
+
+<details>
+<summary><strong>Commodore 64</strong></summary>
+
+![Commodore 64](screenshots/c64.png)
+
+</details>
+
+<details>
+<summary><strong>AI Command Core</strong></summary>
+
+![AI Command Core](screenshots/aicore.png)
+
+</details>
+
+<details>
+<summary><strong>Data Center</strong></summary>
+
+![Data Center](screenshots/datacenter.png)
+
+</details>
+
+<details>
+<summary><strong>DOS Shell</strong></summary>
+
+![DOS Shell](screenshots/dos.png)
+
+</details>
+
+<details>
+<summary><strong>Mac System 7</strong></summary>
+
+![Mac System 7](screenshots/mac7.png)
+
+</details>
+
+<details>
+<summary><strong>NASA Mission Control</strong></summary>
+
+![NASA Mission Control](screenshots/mission.png)
+
+</details>
+
+<details>
+<summary><strong>Cyber Defense</strong></summary>
+
+![Cyber Defense](screenshots/cyberdefense.png)
+
+</details>
+
+<details>
+<summary><strong>Neural Network Core</strong></summary>
+
+![Neural Network Core](screenshots/neural.png)
+
+</details>
+
+<details>
+<summary><strong>Quantum Control Room</strong></summary>
+
+![Quantum Control Room](screenshots/quantum.png)
+
+</details>
+
+<details>
+<summary><strong>BioLab Containment</strong></summary>
+
+![BioLab Containment](screenshots/biolab.png)
+
+</details>
+
+<details>
+<summary><strong>Chronos Console</strong></summary>
+
+![Chronos Console](screenshots/chronos.png)
+
+</details>
 
 ### 🖖 Star Trek TOS Theme (`/tos`)
 - Authentic LCARS-inspired interface
@@ -253,6 +425,55 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 - Sound toggle button with mute icon indicator
 - Pod temperature updates on observation
 
+### 🧬 BioLab Containment Facility Theme (`/biolab`)
+- Level 4 biosafety laboratory with organism containment
+- Containment tubes with pulsing liquid levels and bubble animations
+- Bio-luminescent background with organic cell patterns
+- Heartbeat Canvas - live EKG/vital signs waveform animation (50ms refresh)
+- Cell Growth Canvas - animated bar graph showing growth rates
+- Microscope view modal with animated cells and nuclei
+- DNA Helix SVG with rotating 3D animation (4s rotation cycle)
+- Contamination level meter with green-to-yellow-to-red gradient
+- Mutation index tracking with pulsing progress bars
+- Viability percentages for each specimen
+- Status states: STABLE, MUTATING, CRITICAL with color-coded indicators
+- Biohazard icon (☣) with rotating pulse animation
+- Quarantine status light with blinking animation
+- Decontamination function affects all tubes simultaneously
+- Microscope crosshair overlay with grid lines
+- Animated cells with glowing nuclei bouncing in microscope view
+- Organism icons: 🦠🧫🧬☣🦋🐛
+- Lab time counter and real-time activity log
+- Specimen data: ID, status, viability, mutation, growth rate, containment level
+- Saira & Share Tech Mono fonts for scientific aesthetic
+- Green/yellow bio-hazard color scheme (#00ff66 / #ffcc00)
+- Keyboard shortcuts: A (analyze DNA), Q (quarantine), D (decontaminate all), ESC (close)
+- Analyze DNA shows full-screen DNA helix for 3 seconds
+- Terminate specimen reduces viability to 0%
+
+### ⚙️ Chronos Console Theme (`/chronos`)
+- Victorian-era time traveler's steampunk command console
+- Animated time vortex background using Canvas API with swirling particles
+- Brass and copper color palette with mahogany backgrounds
+- Victorian typography: IM Fell English, Cinzel, Special Elite fonts
+- Working analog chronometer with rotating hour/minute/second hands
+- Temporal orrery system showing service nodes as orbiting planets
+- Brass pressure gauges with swinging needles for system metrics
+- Temporal anchors (services) with shimmer animations and brass frames
+- Parchment-style logbook with lined paper effect and handwritten entries
+- Timeline slider to travel through 5 historical eras (Victorian, WWI, Modern, Future, Far Future)
+- Era-specific color filters: sepia, verdigris, magenta, amber shifts
+- Brass rivets, gear animations, and copper oxidation effects
+- Glassmorphic brass-bordered panels with inset glow
+- Steampunk console overlay with command input
+- Help modal with keyboard shortcuts guide
+- Coordinates display: temporal, spatial, chronal flux status
+- Boot sequence animation with brass frame and typewriter effect
+- Console controls: Sync Anchors, Recalibrate, Stabilize buttons
+- Floating shortcuts hint with brass styling
+- Custom brass scrollbars with glow effects
+- Keyboard shortcuts: C (open console), T (timeline focus), ESC (close overlays), ? (help)
+
 ### 🛡️ Cyber Defense Center Theme (`/cyberdefense`)
 - USCYBERCOM / SOC (Security Operations Center) war room interface
 - Animated world map with simplified continent outlines (Canvas-based)
@@ -377,6 +598,12 @@ A retro-styled multi-theme dashboard for monitoring and accessing infrastructure
 **Quantum Control Room:**
 - Click cryogenic pods to view details | Watch quantum particle field animation | O key: Observe pod (updates temp) | C key: Collapse wave function (particle explosion) | F key: Freeze pod | M key: Mute/unmute audio | Sound effects play automatically | OBSERVE: Measure quantum state | COLLAPSE: Trigger wave function collapse with visual/audio | FREEZE: Ultra-cool pod to 0.005K | ESC: Close modal
 
+**BioLab Containment:**
+- Click containment tubes to open microscope view | Watch heartbeat EKG and cell growth graphs | A key: Analyze DNA (shows helix overlay) | Q key: Quarantine specimen | D key: Decontaminate all tubes | ANALYZE: 3-second DNA sequence animation | QUARANTINE: Stabilize mutating specimens | TERMINATE: Reduce viability to 0% | Decontaminate button cleans all tubes | ESC: Close microscope
+
+**Chronos Console:**
+- Click temporal anchors (services) to view details | Watch animated time vortex and swirling particles | Drag timeline slider to shift between eras (Victorian/WWI/Modern/Future/Far Future) | C key: Open steampunk console overlay | T key: Focus timeline | ? key: Help modal | Click brass buttons to sync anchors, recalibrate, stabilize | Watch chronometer hands rotate in real-time | Orrery planets pulse with service status | ESC: Close overlays
+
 ## Project Structure
 
 ```
@@ -465,11 +692,21 @@ dashboard/
 │   │   └── app.js         # Neural synapse canvas, consciousness meter, thought stream
 │   └── css/
 │       └── style.css      # Synthwave magenta/cyan, Blade Runner aesthetics
-└── quantum/               # Quantum Control Room theme
+├── quantum/               # Quantum Control Room theme
+│   ├── js/
+│   │   └── app.js         # Web Audio sounds, particle field, wave collapse animation
+│   └── css/
+│       └── style.css      # Glassmorphism, cryogenic pods, cyan/turquoise theme
+├── biolab/                # BioLab Containment Facility theme
+│   ├── js/
+│   │   └── app.js         # Heartbeat/growth canvas, microscope cells, DNA helix SVG
+│   └── css/
+│       └── style.css      # Bio-luminescence, organism tubes, green/yellow theme
+└── chronos/                # Chronos Console theme
     ├── js/
-    │   └── app.js         # Web Audio sounds, particle field, wave collapse animation
+    │   └── app.js         # Time vortex canvas, timeline slider, orrery, brass controls
     └── css/
-        └── style.css      # Glassmorphism, cryogenic pods, cyan/turquoise theme
+        └── style.css      # Steampunk brass/copper styling, Victorian fonts, era filters
 ```
 
 ## Customization

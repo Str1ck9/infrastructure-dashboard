@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CompuServe Information Manager</title>
+  <link rel="stylesheet" href="../common/css/reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script defer src="../common/js/services.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <!-- Windows 95 Desktop Background -->
+  <div class="desktop-bg"></div>
+  
+  <!-- CompuServe Window -->
+  <div class="window" id="mainWindow">
+    <!-- Title Bar -->
+    <div class="titlebar">
+      <div class="titlebar-left">
+        <img class="window-icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230066cc'/%3E%3Cpath d='M4 4h8v8h-8z' fill='%23fff'/%3E%3C/svg%3E" alt="CIS">
+        <span class="title-text">CompuServe Information Manager</span>
+      </div>
+      <div class="controls">
+        <button class="btn minimize" title="Minimize" aria-label="Minimize">_</button>
+        <button class="btn maximize" title="Maximize" aria-label="Maximize">□</button>
+        <button class="btn close" title="Close" onclick="confirmClose()" aria-label="Close">×</button>
+      </div>
+    </div>
+
+    <!-- Menu Bar -->
+    <div class="menubar">
+      <button class="menu-item">File</button>
+      <button class="menu-item">Edit</button>
+      <button class="menu-item">Services</button>
+      <button class="menu-item">Mail</button>
+      <button class="menu-item">Special</button>
+      <button class="menu-item">Window</button>
+      <button class="menu-item">Help</button>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <div class="toolbar-group">
+        <button class="toolbar-btn" id="goBtn" title="Go">
+          <div class="icon icon-go"></div>
+        </button>
+        <button class="toolbar-btn" id="getMailBtn" title="Get Mail">
+          <div class="icon icon-mail"></div>
+        </button>
+        <button class="toolbar-btn" id="writeBtn" title="Write">
+          <div class="icon icon-write"></div>
+        </button>
+        <button class="toolbar-btn" id="sendBtn" title="Send/Receive">
+          <div class="icon icon-send"></div>
+        </button>
+        <button class="toolbar-btn" id="fileBtn" title="File Cabinet">
+          <div class="icon icon-file"></div>
+        </button>
+        <button class="toolbar-btn" id="quoteBtn" title="Quotes">
+          <div class="icon icon-quotes"></div>
+        </button>
+        <button class="toolbar-btn" id="newsBtn" title="News">
+          <div class="icon icon-news"></div>
+        </button>
+        <button class="toolbar-btn" id="shopBtn" title="Shopping">
+          <div class="icon icon-shop"></div>
+        </button>
+        <button class="toolbar-btn" id="travelBtn" title="Travel">
+          <div class="icon icon-travel"></div>
+        </button>
+        <button class="toolbar-btn" id="favBtn" title="Favorite Places">
+          <div class="icon icon-fav"></div>
+        </button>
+        <button class="toolbar-btn" id="internetBtn" title="Internet">
+          <div class="icon icon-internet"></div>
+        </button>
+        <button class="toolbar-btn" id="findBtn" title="Find">
+          <div class="icon icon-find"></div>
+        </button>
+        <button class="toolbar-btn" id="stopBtn" title="Stop">
+          <div class="icon icon-stop"></div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="content-wrapper">
+      <!-- Explore Services Header -->
+      <div class="explore-header">
+        <button class="explore-minimize">_</button>
+        <span class="explore-title">Explore Services</span>
+        <button class="explore-help">?</button>
+        <button class="explore-close">▲</button>
+      </div>
+
+      <!-- Banner Area -->
+      <div class="banner-area">
+        <div class="banner-main">
+          <div class="banner-logo">
+            <div class="cis-logo">
+              <div class="logo-icon">@</div>
+              <div class="logo-text">CompuServe</div>
+            </div>
+          </div>
+          <div class="banner-explore">
+            <h1>Explore CompuServe</h1>
+          </div>
+          <div class="banner-member">
+            <div class="member-title">Member Services</div>
+            <div class="member-subtitle">Tools & Events</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Service Grid -->
+      <div class="service-grid" id="serviceGrid">
+        <!-- Services will be dynamically loaded here -->
+      </div>
+
+      <!-- About WinCIM Dialog (floating) -->
+      <div class="about-dialog" id="aboutDialog">
+        <div class="dialog-titlebar">
+          <span class="dialog-title">About WinCIM ©</span>
+          <button class="dialog-close" onclick="closeAbout()">×</button>
+        </div>
+        <div class="dialog-content">
+          <div class="dialog-icon">💾</div>
+          <div class="dialog-info">
+            <strong>CompuServe Information Manager</strong><br>
+            Version 2.0.1<br>
+            Copyright© 1993-1995 CompuServe Incorporated<br>
+            All Rights Reserved
+            <br><br>
+            <span id="dateTime"></span><br>
+            Disk Space: C: <span id="diskSpace">15472784</span>
+          </div>
+          <button class="ok-btn" onclick="closeAbout()">OK</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Status Bar -->
+    <div class="statusbar">
+      <div class="status-section status-main">
+        <span id="statusText">Ready</span>
+      </div>
+      <div class="status-section status-divider"></div>
+      <div class="status-section status-time" id="statusTime">
+        15:29:23
+      </div>
+    </div>
+  </div>
+
+  <!-- Member ID Dialog -->
+  <div id="memberDialog" class="modal-overlay">
+    <div class="member-dialog">
+      <div class="dialog-titlebar">
+        <span class="dialog-title">Member Services</span>
+        <button class="dialog-close" onclick="closeMemberDialog()">×</button>
+      </div>
+      <div class="dialog-content">
+        <p><strong>Member ID:</strong> <span id="memberId">72345,1234</span></p>
+        <p><strong>Status:</strong> <span class="status-online">● Connected</span></p>
+        <p><strong>Session Time:</strong> <span id="sessionTime">00:00:00</span></p>
+        <p><strong>Services Available:</strong> <span id="serviceCount">0</span></p>
+        <button class="ok-btn" onclick="closeMemberDialog()">OK</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
