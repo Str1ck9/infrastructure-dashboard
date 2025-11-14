@@ -228,16 +228,29 @@ window.addEventListener('resize', initParticleField);
 // ====================
 // SERVICE PODS
 // ====================
-const services = [
-  { name: 'AUTH-CORE', state: 'superposition', temp: 0.015, coherence: 94, entangle: 127 },
-  { name: 'DATA-VAULT', state: 'entangled', temp: 0.012, coherence: 91, entangle: 234 },
-  { name: 'LOGIC-MATRIX', state: 'superposition', temp: 0.018, coherence: 88, entangle: 189 },
-  { name: 'MEMORY-BANK', state: 'entangled', temp: 0.014, coherence: 96, entangle: 98 },
-  { name: 'NEURAL-NET', state: 'superposition', temp: 0.020, coherence: 85, entangle: 312 },
-  { name: 'CACHE-LAYER', state: 'entangled', temp: 0.011, coherence: 98, entangle: 156 }
-];
-
+let services = [];
 let selectedPod = null;
+
+// Initialize services from window.SERVICES
+function initServices() {
+  if (!window.SERVICES) return;
+  
+  services = [];
+  const states = ['superposition', 'entangled', 'superposition'];
+  
+  window.SERVICES.forEach(category => {
+    category.services.forEach(svc => {
+      services.push({
+        name: svc.name,
+        url: svc.url,
+        state: states[Math.floor(Math.random() * states.length)],
+        temp: (0.010 + Math.random() * 0.010).toFixed(3),
+        coherence: Math.floor(Math.random() * 20 + 80),
+        entangle: Math.floor(Math.random() * 200 + 100)
+      });
+    });
+  });
+}
 
 function renderPods() {
   const podGrid = document.getElementById('podGrid');
@@ -300,16 +313,13 @@ function observeService() {
   if (selectedPod === null) return;
   const service = services[selectedPod];
   
-  addEvent(`Observing ${service.name}...`);
+  addEvent(`Opening ${service.name}...`);
   playQuantumHum();
   
-  // Update temperature
-  service.temp = (0.010 + Math.random() * 0.010).toFixed(3);
-  document.getElementById('modalTemp').textContent = service.temp + 'K';
+  // Open service in new window
+  window.open(service.url, '_blank');
   
-  setTimeout(() => {
-    addEvent(`Observation complete: ${service.name}`);
-  }, 1000);
+  addEvent(`${service.name} portal opened`);
 }
 
 function collapseWaveFunction() {
@@ -466,6 +476,7 @@ window.addEventListener('load', () => {
   initAudio();
   initParticleField();
   animateParticleField();
+  initServices();
   renderPods();
   
   // Initial events

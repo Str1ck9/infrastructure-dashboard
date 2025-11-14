@@ -1,17 +1,32 @@
 // BioLab Containment Facility - Organic/Biological Interface
 // Canvas Vital Signs + DNA Helix + Microscope View
 
-// Services (organisms)
-const organisms = [
-  { name: 'SPECIMEN-ALPHA', status: 'stable', viability: 94, mutation: 12, growth: 3.2, icon: '🦠' },
-  { name: 'STRAIN-BETA', status: 'mutating', viability: 78, mutation: 34, growth: 5.7, icon: '🧫' },
-  { name: 'CULTURE-GAMMA', status: 'stable', viability: 91, mutation: 8, growth: 2.1, icon: '🧬' },
-  { name: 'PATHOGEN-DELTA', status: 'critical', viability: 45, mutation: 67, growth: 8.9, icon: '☣️' },
-  { name: 'ORGANISM-EPSILON', status: 'stable', viability: 88, mutation: 15, growth: 3.8, icon: '🦋' },
-  { name: 'SAMPLE-ZETA', status: 'mutating', viability: 72, mutation: 41, growth: 6.4, icon: '🐛' }
-];
-
+// Services (organisms) - will be populated from window.SERVICES
+let organisms = [];
 let selectedTube = null;
+
+// Initialize organisms from services
+function initOrganisms() {
+  if (!window.SERVICES) return;
+  
+  organisms = [];
+  const icons = ['🦠', '🧫', '🧬', '☣️', '🦋', '🐛'];
+  const statuses = ['stable', 'mutating', 'stable'];
+  
+  window.SERVICES.forEach(category => {
+    category.services.forEach((svc, idx) => {
+      organisms.push({
+        name: svc.name,
+        url: svc.url,
+        status: statuses[Math.floor(Math.random() * statuses.length)],
+        viability: Math.floor(Math.random() * 30 + 70),
+        mutation: Math.floor(Math.random() * 40 + 5),
+        growth: (Math.random() * 6 + 1).toFixed(1),
+        icon: icons[idx % icons.length]
+      });
+    });
+  });
+}
 
 // Render containment tubes
 function renderTubes() {
@@ -279,15 +294,12 @@ function analyzeSpecimen() {
   if (selectedTube === null) return;
   
   const organism = organisms[selectedTube];
-  addActivity(`Analyzing DNA of ${organism.name}`);
+  addActivity(`Opening ${organism.name}...`);
   
-  // Show DNA overlay
-  document.getElementById('dnaOverlay').classList.remove('hidden');
+  // Open service URL
+  window.open(organism.url, '_blank');
   
-  setTimeout(() => {
-    document.getElementById('dnaOverlay').classList.add('hidden');
-    addActivity(`Analysis complete: Mutation index ${organism.mutation}%`);
-  }, 3000);
+  addActivity(`${organism.name} portal opened`);
 }
 
 function quarantineTube() {
@@ -393,6 +405,7 @@ document.addEventListener('keydown', (e) => {
 
 // Initialization
 window.addEventListener('load', () => {
+  initOrganisms();
   renderTubes();
   initHeartbeatCanvas();
   initGrowthCanvas();

@@ -40,6 +40,7 @@ window.SERVICES = [
     services: [
       { name: "Radarr",     url: "http://10.0.0.4:7878" },
       { name: "Sonarr",     url: "http://10.0.0.4:8989" },
+      { name: "Lidarr",     url: "http://10.0.0.4:30071" },
       { name: "Prowlarr",   url: "http://10.0.0.4:9696" },
       { name: "Bazarr",     url: "http://10.0.0.4:6767" },
       { name: "qBittorrent",url: "http://10.0.0.4:13000" }

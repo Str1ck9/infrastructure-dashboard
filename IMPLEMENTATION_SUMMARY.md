@@ -20,7 +20,7 @@
 ### All Your Services Included:
 - Primary Systems: SonicWall, TrueNAS
 - Data Storage: Plex, NextCloud
-- Media Retrieval: Radarr, Sonarr, Prowlarr, Bazarr, qBittorrent
+- Media Retrieval: Radarr, Sonarr, Lidarr, Prowlarr, Bazarr, qBittorrent
 - Network Control: Pantry Switch, NWA110AX WAP, Cisco Switch, NSG50 Firewall
 - Sensor Array: DrivewayCAM, FrontDrBellCam
 

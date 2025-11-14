@@ -91,14 +91,15 @@ The script automatically captures screenshots for all 24 themes:
 14. Commodore 64
 15. AI Command Core
 16. Data Center
-17. DOS Shell
-18. Mac System 7
-19. NASA Mission Control
-20. Cyber Defense
-21. Neural Network Core
-22. Quantum Control Room
-23. BioLab Containment
-24. Chronos Console
+17. TrueNAS Ops Console
+18. DOS Shell
+19. Mac System 7
+20. NASA Mission Control
+21. Cyber Defense
+22. Neural Network Core
+23. Quantum Control Room
+24. BioLab Containment
+25. Chronos Console
 
 ## Troubleshooting
 

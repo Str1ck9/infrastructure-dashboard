@@ -20,6 +20,7 @@ window.SERVICES = [
     services: [
       { name: "Radarr (Movies)", url: "http://10.0.0.4:7878", desc: ":7878" },
       { name: "Sonarr (TV)", url: "http://10.0.0.4:8989", desc: ":8989" },
+      { name: "Lidarr (Music)", url: "http://10.0.0.4:30071", desc: ":30071" },
       { name: "Prowlarr (Indexers)", url: "http://10.0.0.4:9696", desc: ":9696" },
       { name: "Bazarr (Subtitles)", url: "http://10.0.0.4:6767", desc: ":6767" },
       { name: "qBittorrent", url: "http://10.0.0.4:13000", desc: ":13000" }
