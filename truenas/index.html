@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TrueNAS Ops Console - Infrastructure Dashboard</title>
+  <link rel="stylesheet" href="../common/css/reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script defer src="../common/js/services.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <header class="global-header">
+    <div class="logo-cluster">
+      <div class="logo-mark" aria-hidden="true">
+        <span class="logo-orb"></span>
+        <span class="logo-wave"></span>
+      </div>
+      <div class="logo-text">
+        <span class="brand">TrueNAS</span>
+        <span class="product">Ops Console</span>
+      </div>
+    </div>
+    <div class="header-status">
+      <div class="status-pill healthy">All systems nominal</div>
+      <div class="status-pill replication">Replication ✓</div>
+      <div class="cluster-clock" id="clusterClock">--:--</div>
+    </div>
+    <div class="header-actions">
+      <button class="action-btn">Alerts <span class="badge">0</span></button>
+      <button class="action-btn">Users</button>
+      <button class="action-btn">Settings</button>
+    </div>
+  </header>
+
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <h2>Navigation</h2>
+        <nav>
+          <a class="nav-item active" href="#">Dashboard</a>
+          <a class="nav-item" href="#storage">Storage</a>
+          <a class="nav-item" href="#networking">Networking</a>
+          <a class="nav-item" href="#services">Services</a>
+          <a class="nav-item" href="#system">System</a>
+          <a class="nav-item" href="#analytics">Analytics</a>
+        </nav>
+      </div>
+      <div class="sidebar-section">
+        <h2>Cluster</h2>
+        <ul class="cluster-stats">
+          <li><span>Nodes</span><strong>3</strong></li>
+          <li><span>Version</span><strong>SCALE 23.10</strong></li>
+          <li><span>Uptime</span><strong id="uptime">312d</strong></li>
+          <li><span>Replication</span><strong>Healthy</strong></li>
+        </ul>
+      </div>
+      <div class="sidebar-section">
+        <h2>Snapshots</h2>
+        <ul class="snapshot-list" id="snapshotList"></ul>
+      </div>
+    </aside>
+
+    <main class="main-panel">
+      <section class="hero">
+        <div class="hero-text">
+          <h1>TrueNAS SCALE Cluster</h1>
+          <p>VXRack-01 • Fibre Channel + 100G LAN • Last sync <span id="syncStatus">--</span></p>
+        </div>
+        <div class="hero-actions">
+          <button class="primary-btn">Launch Web Shell</button>
+          <button class="ghost-btn">View Logs</button>
+        </div>
+      </section>
+
+      <section class="metrics-grid" aria-labelledby="metricsHeading">
+        <header class="section-header">
+          <h2 id="metricsHeading">Live Utilization</h2>
+          <span class="update-label" id="updateLabel">Refreshing...</span>
+        </header>
+        <div class="metric-card">
+          <div class="metric-title">CPU</div>
+          <div class="metric-value" id="cpuValue">--%</div>
+          <div class="meter"><div class="meter-fill" id="cpuBar"></div></div>
+          <div class="metric-footer">12 core Xeon • KVM workloads</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-title">Memory</div>
+          <div class="metric-value" id="memoryValue">--%</div>
+          <div class="meter"><div class="meter-fill" id="memoryBar"></div></div>
+          <div class="metric-footer">256 GiB ECC • ARC 64 GiB</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-title">Pool Capacity</div>
+          <div class="metric-value" id="poolValue">--%</div>
+          <div class="meter"><div class="meter-fill" id="poolBar"></div></div>
+          <div class="metric-footer">zpool tank • Mirror vdevs</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-title">Network</div>
+          <div class="metric-value" id="networkValue">-- Gb/s</div>
+          <div class="meter"><div class="meter-fill" id="networkBar"></div></div>
+          <div class="metric-footer">LACP bond0 • 100G Mellanox</div>
+        </div>
+      </section>
+
+      <section class="storage-pools" id="storage">
+        <header class="section-header">
+          <h2>Storage Pools</h2>
+          <button class="ghost-btn">Manage Pools</button>
+        </header>
+        <div class="pool-table">
+          <div class="pool-row pool-head">
+            <div>Pool</div>
+            <div>Usage</div>
+            <div>State</div>
+            <div>Datasets</div>
+            <div>Compression</div>
+          </div>
+          <div class="pool-row">
+            <div class="pool-name">tank</div>
+            <div class="pool-usage"><span id="tankUsage">--</span> of 240 TiB</div>
+            <div class="pool-state healthy">ONLINE</div>
+            <div>18</div>
+            <div>lz4</div>
+          </div>
+          <div class="pool-row">
+            <div class="pool-name">backup</div>
+            <div class="pool-usage"><span id="backupUsage">--</span> of 120 TiB</div>
+            <div class="pool-state healthy">ONLINE</div>
+            <div>9</div>
+            <div>zstd-fast</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="service-section" id="services">
+        <header class="section-header">
+          <h2>Service Catalog</h2>
+          <span class="section-subtitle">Shared across the homelab infrastructure</span>
+        </header>
+        <div class="service-groups" id="serviceGroups"></div>
+      </section>
+
+      <section class="events" id="analytics">
+        <header class="section-header">
+          <h2>Recent Events</h2>
+          <button class="ghost-btn">Open Audit Log</button>
+        </header>
+        <ul class="event-feed" id="eventFeed"></ul>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer-bar" id="networking">
+    <div class="footer-status">
+      <span>Cluster Fabric</span>
+      <strong>100G Ethernet • MTU 9000</strong>
+    </div>
+    <div class="footer-status">
+      <span>TrueCommand</span>
+      <strong>Connected</strong>
+    </div>
+    <div class="footer-status">
+      <span>Last Configuration Backup</span>
+      <strong id="backupStatus">--</strong>
+    </div>
+  </footer>
+</body>
+</html>
